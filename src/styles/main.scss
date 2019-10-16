@@ -87,10 +87,15 @@
         .finderui-display-viewport {
           display: block;
           height: 100%;
-          max-width: 100%;
+          width: 100%;
           padding: 0 36px 0 0;
           overflow-x: hidden;
           overflow-y: scroll;
+
+          .finderui-display-content-container {
+            display: block;
+            max-width: 100%;
+          }
         }
 
         @media only screen and (max-width: 759px) {
