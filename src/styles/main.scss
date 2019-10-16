@@ -1,0 +1,111 @@
+.finderui-main {
+  display: flex;
+  height: 100vh;
+  left: 0;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  position: fixed;
+  top: 0;
+  width: 100vw;
+
+  // RESET
+  a{text-decoration:none; color:inherit; cursor:pointer;}
+  button{background-color:transparent; color:inherit; border-width:0; padding:0; cursor:pointer;}
+  ul{margin:0; padding:0; list-style:none;}
+  h1, h2, h3, h4, h5, h6{margin:0; font-size:inherit; font-weight:inherit;}
+  p{margin:0;}
+
+  .finderui-frame {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    min-width: 100%;
+
+    .finderui-pane {
+      display: flex;
+      width: 100%;
+
+      .finderui-nodelist {
+        list-style-type: none;
+        overflow-x: hidden;
+        overflow-y: scroll;
+        padding: 0;
+        min-width: 180px;
+
+        &.nodelist-closed {
+          min-width: unset;
+          width: 0;
+        }
+        
+        .finderui-directory,
+        .finderui-file {
+          margin: 0;
+          padding: 0 6px;
+
+          a {
+            cursor: default;
+          }
+
+          .finderui-item-label {
+            margin: 0;
+          }
+
+          &.dir-open,
+          &.file-open {
+            background: blue;
+            color: white;
+          }
+        }
+
+        .finderui-directory {
+          font-weight: 600;
+        }
+
+        .finderui-file {
+          font-weight: 400;
+        }
+      }
+
+      .finderui-display {
+        align-items: center;
+        display: flex;
+        justify-content: center;
+        min-width: 60vw;
+        overflow: scroll;
+        padding: 0 0 0 36px;
+        position: relative;
+        width: 100%;
+
+        .finderui-display-nodelist-toggle {
+          background: #eee;
+          top: 3px;
+          font-weight: 700;
+          left: 12px;
+          position: absolute;
+        }
+
+        .finderui-display-viewport {
+          display: block;
+          height: 100%;
+          max-width: 100%;
+          padding: 0 36px 0 0;
+          overflow-x: hidden;
+          overflow-y: scroll;
+        }
+
+        @media only screen and (max-width: 759px) {
+          min-width: 284px;
+          padding: 0 0 0 18px;
+
+          .finderui-display-nodelist-toggle {
+            left: 6px;
+          }
+
+          .finderui-display-viewport {
+            padding: 0 18px 0 0;
+          }
+        }
+      }
+    }
+  }
+}
