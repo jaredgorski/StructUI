@@ -1,7 +1,7 @@
 {
   "name": "finderui",
-  "version": "0.3.31",
-  "description": "",
+  "version": "0.4.2",
+  "description": "JSON-based, filesystem-inspired site explorer.",
   "main": "dist/index.js",
   "directories": {
     "src": "./src"
@@ -25,6 +25,7 @@
   "homepage": "https://github.com/jaredgorski/FinderUI#readme",
   "devDependencies": {
     "react": "^16.10.2",
+    "sass": "^1.23.0",
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.9"
   },
