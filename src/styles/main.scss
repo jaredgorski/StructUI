@@ -1,3 +1,10 @@
+// COLORS
+$color-blue: rgb(0, 0, 225);
+$color-gray: rgb(174, 174, 178);
+$color-gray-lt: rgb(229, 229, 234);
+$color-gray-lt2: rgb(242, 242, 247);
+$color-white: rgb(255, 255, 255);
+
 .finderui-main {
   display: flex;
   height: 100vh;
@@ -26,15 +33,19 @@
       width: 100%;
 
       .finderui-nodelist {
+        background-color: $color-gray-lt2;
+        border-right: 1px solid $color-gray-lt;
         list-style-type: none;
         overflow-x: hidden;
         overflow-y: scroll;
         padding: 0;
         min-width: 180px;
+        transition: 0.2s;
+        width: 0;
 
         &.nodelist-closed {
-          min-width: unset;
-          width: 0;
+          border-right: 0px solid transparent;
+          min-width: 0;
         }
         
         .finderui-directory,
@@ -48,12 +59,13 @@
 
           .finderui-item-label {
             margin: 0;
+            white-space: nowrap;
           }
 
           &.dir-open,
           &.file-open {
-            background: blue;
-            color: white;
+            background: $color-blue;
+            color: $color-white;
           }
         }
 
@@ -77,20 +89,30 @@
         width: 100%;
 
         .finderui-display-nodelist-toggle {
-          background: #eee;
-          top: 3px;
-          font-weight: 700;
-          left: 12px;
+          align-items: center;
+          background: $color-gray-lt2;
+          border: 1px solid $color-gray-lt;
+          border-radius: 50%;
+          display: flex;
+          height: 23px;
+          justify-content: center;
+          left: 6px;
           position: absolute;
+          top: 6px;
+          width: 23px;
+
+          .finderui-nodelist-toggle-content {
+            font-weight: 700;
+          }
         }
 
         .finderui-display-viewport {
           display: block;
           height: 100%;
-          max-width: 100%;
           padding: 0 36px 0 0;
           overflow-x: hidden;
           overflow-y: scroll;
+          width: 100%;
         }
 
         @media only screen and (max-width: 759px) {
