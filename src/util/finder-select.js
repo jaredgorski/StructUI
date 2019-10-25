@@ -11,4 +11,23 @@ function updateNodesWithSelection(nodeObjs = {}, selectedNode = {}) {
   }, {});
 }
 
-module.exports = {updateNodesWithSelection};
+function updateNodePathWithSelection(nodeObjs = {}, nodePath = [], labelIndex = 0) {
+  return Object.values(nodeObjs).reduce((updatedNodeObjs, nodeObj) => {
+    const label = nodePath[labelIndex];
+
+    updatedNodeObjs[nodeObj.label] = nodeObj;
+    updatedNodeObjs[nodeObj.label].open = nodeObj.label === label;
+
+    if (nodeObj.hasOwnProperty('childNodes') && nodePath.length > labelIndex + 1) {
+      const newLabelIndex = labelIndex + 1;
+      updatedNodeObjs[nodeObj.label].childNodes = updateNodePathWithSelection(nodeObj.childNodes, nodePath, newLabelIndex);
+    }
+
+    return updatedNodeObjs;
+  }, {});
+}
+
+module.exports = {
+  updateNodesWithSelection,
+  updateNodePathWithSelection,
+};
