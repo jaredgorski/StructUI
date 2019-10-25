@@ -16,17 +16,29 @@ const FinderDisplay = ({nodes, openNode}) => {
 
   const DisplayElement = () => {
     const module = openNode.display.module || 'default';
-    const displayComponent = openNode.display.component[module];
+    let displayComponent = openNode.display.component;
 
-    return displayComponent(openNode.display.props);
+    if (module === 'default' && typeof displayComponent !== 'function' && typeof displayComponent.default === 'function') {
+      displayComponent = displayComponent.default;
+    } else if (typeof displayComponent[module] === 'function') {
+      displayComponent = displayComponent[module];
+    }
+
+    if (typeof displayComponent === 'function') {
+      return displayComponent(openNode.display.props);
+    } else {
+      throw new Error('Display component is not a function.');
+    }
   };
 
   return React.createElement('div', {className: 'finderui-display'},
-    React.createElement('button', {className: 'finderui-display-nodelist-toggle', onClick: () => toggleNodelist()}, '+-'),
+    React.createElement('button', {className: 'finderui-display-nodelist-toggle', title: 'Open/close navigator', onClick: () => toggleNodelist()}, 
+      React.createElement('span', {className: 'finderui-nodelist-toggle-content'}, '+-'),
+    ),
     React.createElement('div', {className: 'finderui-display-viewport'},
       React.createElement('div', {className: 'finderui-display-content-container'},
         React.createElement(DisplayElement)
-      )
+      ),
     ),
   );
 };
