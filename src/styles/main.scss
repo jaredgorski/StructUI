@@ -40,7 +40,7 @@ $color-white: rgb(255, 255, 255);
         overflow-y: scroll;
         padding: 0;
         min-width: 180px;
-        transition: 0.2s;
+        transition: 0.15s;
         width: 0;
 
         &.nodelist-closed {
@@ -59,13 +59,29 @@ $color-white: rgb(255, 255, 255);
 
           .finderui-item-label {
             margin: 0;
+            overflow: hidden;
+            position: relative;
             white-space: nowrap;
+
+            &:after {
+              background: linear-gradient(to right, rgba($color-gray-lt2, 0), rgba($color-gray-lt2, 1) 90%);
+              content: '';
+              height: 100%;
+              position: absolute;
+              right: 0;
+              top: 0;
+              width: 18px;
+            }
           }
 
           &.dir-open,
           &.file-open {
             background: $color-blue;
             color: $color-white;
+
+            .finderui-item-label:after {
+              background: linear-gradient(to right, rgba($color-blue, 0), rgba($color-blue, 1) 90%);
+            }
           }
         }
 
