@@ -23,19 +23,34 @@ const FinderFile = props => {
   );
 };
 
-const FinderItem = ({node, handleNodeSelect}) => {
+const FinderItem = ({node, handleNodeSelect, isOpen}) => {
   const itemTitle = node.title ? node.title : node.label;
+  const itemIcon = () => {
+    if (node.open === true) {
+      if (node.icon && node.icon.open) {
+        return React.createElement('span', {className: 'finderui-item-icon'}, node.icon.open);
+      }
+    } else {
+      if (node.icon && node.icon.closed) {
+        return React.createElement('span', {className: 'finderui-item-icon'}, node.icon.closed);
+      }
+    }
+
+    return null;
+  };
 
   if (node.link && node.link.element && node.link.props) {
     const linkProps = node.link.props || {};
     return React.createElement(node.link.element, linkProps,
       React.createElement('a', {title: itemTitle},
-        React.createElement('p', {className: 'finderui-item-label'}, node.label),
+        itemIcon(),
+        React.createElement('span', {className: 'finderui-item-label'}, node.label),
       )
     );
   } else {
     return React.createElement('a', {title: itemTitle, onClick:  () => handleNodeSelect(node)},
-      React.createElement('p', {className: 'finderui-item-label'}, node.label),
+      itemIcon(),
+      React.createElement('span', {className: 'finderui-item-label'}, node.label),
     );
   }
 };

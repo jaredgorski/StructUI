@@ -52,26 +52,26 @@ $color-white: rgb(255, 255, 255);
         .finderui-file {
           margin: 0;
           padding: 0 6px;
+          position: relative;
 
           a {
             cursor: default;
+            display: flex;
+            flex-direction: row;
+          }
+
+          .finderui-item-icon {
+            align-items: center;
+            display: inline-flex;
+            justify-content: center;
+            margin: 0 6px 0 0;
           }
 
           .finderui-item-label {
+            display: inline-flex;
             margin: 0;
             overflow: hidden;
-            position: relative;
             white-space: nowrap;
-
-            &:after {
-              background: linear-gradient(to right, rgba($color-gray-lt2, 0), rgba($color-gray-lt2, 1) 90%);
-              content: '';
-              height: 100%;
-              position: absolute;
-              right: 0;
-              top: 0;
-              width: 18px;
-            }
           }
 
           &.dir-open,
@@ -79,18 +79,20 @@ $color-white: rgb(255, 255, 255);
             background: $color-blue;
             color: $color-white;
 
-            .finderui-item-label:after {
+            &:after {
               background: linear-gradient(to right, rgba($color-blue, 0), rgba($color-blue, 1) 90%);
             }
           }
-        }
 
-        .finderui-directory {
-          font-weight: 600;
-        }
-
-        .finderui-file {
-          font-weight: 400;
+          &:after {
+            background: linear-gradient(to right, rgba($color-gray-lt2, 0), rgba($color-gray-lt2, 1) 90%);
+            content: '';
+            height: 100%;
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 18px;
+          }
         }
       }
 
