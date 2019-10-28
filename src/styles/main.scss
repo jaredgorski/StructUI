@@ -26,7 +26,7 @@ $color-white: rgb(255, 255, 255);
     display: flex;
     flex-direction: row;
     height: 100%;
-    min-width: 100%;
+    width: 100%;
 
     .finderui-pane {
       display: flex;
@@ -43,21 +43,27 @@ $color-white: rgb(255, 255, 255);
         transition: 0.15s;
         width: 0;
 
-        &.nodelist-closed {
+        &.finderui-nodelist-closed {
           border-right: 0px solid transparent;
           min-width: 0;
+          opacity: 0.5;
         }
         
         .finderui-directory,
         .finderui-file {
+          height: 22px;
           margin: 0;
-          padding: 0 6px;
           position: relative;
 
           a {
+            align-items: center;
+            box-sizing: border-box;
             cursor: default;
             display: flex;
             flex-direction: row;
+            height: 100%;
+            padding: 2px 6px;
+            width: 100%;
           }
 
           .finderui-item-icon {
@@ -115,11 +121,13 @@ $color-white: rgb(255, 255, 255);
           height: 23px;
           justify-content: center;
           left: 6px;
+          outline: none;
           position: absolute;
           top: 6px;
           width: 23px;
 
           .finderui-nodelist-toggle-content {
+            display: flex;
             font-weight: 700;
           }
         }
@@ -136,10 +144,6 @@ $color-white: rgb(255, 255, 255);
         @media only screen and (max-width: 759px) {
           min-width: 284px;
           padding: 0 0 0 18px;
-
-          .finderui-display-nodelist-toggle {
-            left: 6px;
-          }
 
           .finderui-display-viewport {
             padding: 0 18px 0 0;

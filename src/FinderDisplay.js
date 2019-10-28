@@ -1,15 +1,16 @@
 const React = require('react');
 
-const FinderDisplay = ({nodes, openNode}) => {
+const FinderDisplay = ({config, nodes, openNode}) => {
   const toggleNodelist = () => {
     const nodelistEls = typeof window !== undefined ? document.querySelectorAll('.finderui-nodelist') : [];
+    const toggleEl = typeof window !== undefined ? document.querySelector('.finderui-display-nodelist-toggle') : null;
 
     if (nodelistEls.length) {
-      if (nodelistEls[0].classList.contains('nodelist-closed')) {
-        nodelistEls.forEach(el => el.classList.remove('nodelist-closed'));
-      } else {
-        nodelistEls.forEach(el => el.classList.add('nodelist-closed'));
-      }
+      nodelistEls.forEach(el => el.classList.toggle('finderui-nodelist-closed'));
+    }
+
+    if (toggleEl) {
+      toggleEl.classList.toggle('finderui-toggle-closed');
     }
   };
 
@@ -31,9 +32,25 @@ const FinderDisplay = ({nodes, openNode}) => {
     }
   };
 
+  const toggleBtnIcon = () => {
+    if (config && config.toggleIcon) {
+      return config.toggleIcon;
+    } else {
+      return '+-';
+    }
+  };
+
+  const toggleBtnTitle = () => {
+    if (config && config.toggleTitle) {
+      return config.toggleTitle;
+    } else {
+      return 'Open/close navigator';
+    }
+  };
+
   return React.createElement('div', {className: 'finderui-display'},
-    React.createElement('button', {className: 'finderui-display-nodelist-toggle', title: 'Open/close navigator', onClick: () => toggleNodelist()}, 
-      React.createElement('span', {className: 'finderui-nodelist-toggle-content'}, '+-'),
+    React.createElement('button', {className: 'finderui-display-nodelist-toggle', title: toggleBtnTitle(), onClick: () => toggleNodelist()}, 
+      React.createElement('span', {className: 'finderui-nodelist-toggle-content'}, toggleBtnIcon()),
     ),
     React.createElement('div', {className: 'finderui-display-viewport'},
       React.createElement('div', {className: 'finderui-display-content-container'},
