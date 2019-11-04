@@ -14,21 +14,27 @@ const FinderDisplay = ({config, nodes, openNode}) => {
     }
   };
 
-
   const DisplayElement = () => {
     const module = openNode.display.module || 'default';
+    const isClass = openNode.display.isClass === true || false;
     let displayComponent = openNode.display.component;
 
-    if (module === 'default' && typeof displayComponent !== 'function' && typeof displayComponent.default === 'function') {
-      displayComponent = displayComponent.default;
-    } else if (typeof displayComponent[module] === 'function') {
-      displayComponent = displayComponent[module];
+    if (!isClass) {
+      if (module === 'default' && typeof displayComponent !== 'function' && typeof displayComponent.default === 'function') {
+        displayComponent = displayComponent.default;
+      } else if (typeof displayComponent[module] === 'function') {
+        displayComponent = displayComponent[module];
+      }
     }
 
     if (typeof displayComponent === 'function') {
-      return displayComponent(openNode.display.props);
+      if (isClass) {
+        return new displayComponent(openNode.display.props);
+      } else {
+        return displayComponent(openNode.display.props);
+      }
     } else {
-      throw new Error('Display component is not a function.');
+      throw new Error('Display component is not a function or the isClass flag is not invoked.');
     }
   };
 
