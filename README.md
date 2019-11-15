@@ -2,12 +2,16 @@
 Simple, dynamic, filesystem-inspired site explorer.
 
 ## What is it?
-FinderUI is a React component which consumes a configuration object (JavaScript object: API defined under **Usage**) and generates a web application UI in the form of a file explorer. Conceptually, individual webpages on a website can be thought of as files, and groups of files can be organized into directories. This makes a file explorer interface, like Finder on MacOS or Explorer on Windows, a natural user-experience for website navigation. The primary benefit of a component like this for React is being able to configure an entire website structure from one file, loading pages/components as lambdas while handling server configuration separately for pages that should be navigable from the address bar. In other words, entire pages can be loaded as higher-order React components underneath FinderUI with very little configuration, allowing for fast and light SPA-like navigation (no server middleware). If address-bar navigation (server middleware) is needed, FinderUI can be easily loaded and configured per-page. FinderUI also supports wrapping file/directory navigation links with framework router components (like `Link` from Next.js), which enables pre-fetching and other framework-specific features.
+FinderUI is a React component which consumes a configuration object and generates a web application UI in the form of a file explorer. 
+
+Conceptually, individual webpages on a website can be thought of as files, and groups of files can be organized into directories. This meant that a file explorer interface, like Finder on MacOS or Explorer on Windows, can be a natural user-experience for website navigation. The primary benefit of a component like this for React is that it enables a developer to configure an entire website structure from one file, loading pages/components as lambdas while handling server configuration separately for any pages that need to be navigable from the address bar. In other words, entire pages can be loaded as higher-order React components underneath FinderUI with very little configuration, allowing for fast and light SPA-like navigation (no server middleware). If address-bar navigation (server middleware) is needed, FinderUI can be easily loaded and configured per-page. FinderUI also supports wrapping file/directory navigation links with framework router components (like `Link` from Next.js), which enables pre-fetching and other framework-specific features.
 
 **To see this component in action, check out https://jaredgorski.com**
 
 ## Usage
-### Simple
+FinderUI is meant to contain an entire user experience, so it will often be among the first components invoked in a React application. The below examples provide insight into how the code might actually look, though different applications may vary. Take note that, since the configuration object for FinderUI is a JavaScript object, it can be generated programmatically (as long as this is done synchronously) to improve code organization and maintainability.
+
+### Simple example
 #### finderui-config.js:
 ```js
 // These imported components render "displays", AKA "views" or webpages. A display is loaded by FinderUI 
@@ -20,8 +24,8 @@ import SubFile2 from '../components/subfile2';
 
 const finderUIConfig = {
   nodes: {                            // -> `nodes` are directories and files
-    directory: {                      // -> directories can hold multiple directories and/or files within them
-      label: 'directory',             // -> `label` defines the node's title in FinderUI
+    myDirectory: {                      // -> directories can hold multiple directories and/or files within them
+      label: 'my directory',             // -> `label` defines the node's title in FinderUI
       childNodes: {                   // -> `childNodes` is where sub-directories/files are defined for a given
         subfile1: {                   //     directory
           label: 'subfile1',
@@ -73,7 +77,7 @@ class App extends React.Component {
 }
 ```
 
-### Advanced (with Next.js)
+### Advanced example (with Next.js)
 ```jsx
 import Link from 'next/link';
 
@@ -85,7 +89,7 @@ const finderUIConfig = {
     toggleIcon: <svg height="18" width="18" viewBox="0 0 30 30"><use href="/static/toggle-icon.svg"></use></svg>,
   },
   nodes: {
-    directory: {
+    myDirectory: {
       icon: {                         // -> `icon`s can be configured to denote open or closed directories and files
         closed: <svg height="18" width="18" viewBox="0 0 30 30"><use href="/static/closed-icon.svg"></use></svg>,
         open: <svg height="18" width="18" viewBox="0 0 30 30"><use href="/static/open-icon.svg></use></svg>,
@@ -97,7 +101,7 @@ const finderUIConfig = {
         },                            //    navigate to '/directory'
       },
       childNodes: {
-        file: {
+        subfile: {
           icon: {
             closed: <svg height="18" width="18" viewBox="0 0 30 30"><use href="/static/closed-icon.svg"></use></svg>,
             open: <svg height="18" width="18" viewBox="0 0 30 30"><use href="/static/open-icon.svg></use></svg>,
