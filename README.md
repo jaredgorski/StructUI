@@ -65,7 +65,7 @@ ReactDOM.render(
 #### app.js:
 ```jsx
 import React from 'react';
-import FinderUI from 'finder-ui';
+import FinderUI from 'finderui';
 import {finderUIConfig} from '../props/finderui-config';
 
 class App extends React.Component {
@@ -164,7 +164,7 @@ class Site extends App {
 #### pages/subfile.js:
 ```jsx
 import Head from 'next/head'
-import FinderUI from 'finder-ui';
+import FinderUI from 'finderui';
 import {finderUIConfig} from '../props/finderui-config';
 
 function SubFile() {
