@@ -78,6 +78,7 @@ class App extends React.Component {
 ```
 
 ### Advanced example (with Next.js)
+#### finderui-config.js:
 ```jsx
 import Link from 'next/link';
 
