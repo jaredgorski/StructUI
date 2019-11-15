@@ -18,25 +18,25 @@ FinderUI is meant to contain an entire user experience, so it will often be amon
 // when its corresponding navigation element is activated, much like single-clicking a file in MacOS' 
 // Finder opens a display pane with details about the file. Nesting files in directories (via `childNodes`) 
 // results in nested panes within FinderUI.
-import File from '../components/file';
-import SubFile1 from '../components/subfile1';
-import SubFile2 from '../components/subfile2';
+import FileDisplay from '../components/FileDisplay';
+import SubFile1Display from '../components/SubFile1Display';
+import SubFile2Display from '../components/SubFile2Display';
 
 const finderUIConfig = {
-  nodes: {                            // -> `nodes` are directories and files
-    myDirectory: {                      // -> directories can hold multiple directories and/or files within them
-      label: 'my directory',             // -> `label` defines the node's title in FinderUI
-      childNodes: {                   // -> `childNodes` is where sub-directories/files are defined for a given
-        subfile1: {                   //     directory
+  nodes: {                                // -> `nodes` are directories and files
+    myDirectory: {                        // -> directories can hold multiple directories and/or files within them
+      label: 'my directory',              // -> `label` defines the node's title in FinderUI
+      childNodes: {                       // -> `childNodes` is where sub-directories/files are defined for a given
+        subfile1: {                       //     directory
           label: 'subfile1',
-          display: {                  // -> files are denoted by the lack of `childNodes` and the presence of `display`
-            component: SubFile1,      // -> the `display`property can load an imported component (class or function) 
-          },                          //    when its node is selected
+          display: {                      // -> files are denoted by the lack of `childNodes` and the presence of `display`
+            component: SubFile1Display,   // -> the `display`property can load an imported component (class or function) 
+          },                              //    when its node is selected
         },
         subfile2: {
           label: 'subfile2',
           display: {
-            component: SubFile2,
+            component: SubFile2Display,
           },
         },
       },
@@ -44,7 +44,7 @@ const finderUIConfig = {
     file: {
       label: 'file',
       display: {
-        component: File,
+        component: FileDisplay,
       },
     },
   },
@@ -81,24 +81,24 @@ class App extends React.Component {
 ```jsx
 import Link from 'next/link';
 
-import File from '../components/file';
-import SubFile from '../components/subfile';
+import FileDisplay from '../components/FileDisplay';
+import SubFileDisplay from '../components/SubFileDisplay';
 
 const finderUIConfig = {
-  config: {                           // -> `config` allows for customizing global FinderUI settings
+  config: {                               // -> `config` allows for customizing global FinderUI settings
     toggleIcon: <svg height="18" width="18" viewBox="0 0 30 30"><use href="/static/toggle-icon.svg"></use></svg>,
   },
   nodes: {
     myDirectory: {
-      icon: {                         // -> `icon`s can be configured to denote open or closed directories and files
+      icon: {                             // -> `icon`s can be configured to denote open or closed directories and files
         closed: <svg height="18" width="18" viewBox="0 0 30 30"><use href="/static/closed-icon.svg"></use></svg>,
         open: <svg height="18" width="18" viewBox="0 0 30 30"><use href="/static/open-icon.svg></use></svg>,
       },
       label: 'directory',
-      link: {                         // -> the `link` property defines the props/attributes of a node's anchor element
+      link: {                             // -> the `link` property defines the props/attributes of a node's anchor element
         props: {
-          href: '/directory',         // -> when this `directory`'s item in FinderUI is clicked, the browser will 
-        },                            //    navigate to '/directory'
+          href: '/directory',             // -> when this `directory`'s item in FinderUI is clicked, the browser will 
+        },                                //    navigate to '/directory'
       },
       childNodes: {
         subfile: {
@@ -108,18 +108,18 @@ const finderUIConfig = {
           },
           label: 'subfile',
           link: {
-            element: Link,            // -> this `link` will be wrapped by the `Link` routing element from Next.js 
-            props: {                  //    imported at the top of this document, allowing for pre-fetching
+            element: Link,                // -> this `link` will be wrapped by the `Link` routing element from Next.js 
+            props: {                      //    imported at the top of this document, allowing for pre-fetching
               href: '/directory/subfile',
             },
           },
           display: {
-            component: SubFile,
+            component: SubFileDisplay,
             props: {
-              title: 'My Subfile',    // -> props can be passed into the display component from FinderUI, though 
-            },                        //    it's important to note that FinderUI only supports synchronous behavior.
-          },                          //    any asynchronous data can be loaded and managed on the component itself 
-        },                            //    when it is activated by FinderUI
+              title: 'My Subfile',        // -> props can be passed into the display component from FinderUI, though 
+            },                            //    it's important to note that FinderUI only supports synchronous behavior.
+          },                              //    any asynchronous data can be loaded and managed on the component itself 
+        },                                //    when it is activated by FinderUI
       },
     },
     file: {
@@ -135,7 +135,7 @@ const finderUIConfig = {
         },
       },
       display: {
-        component: File,
+        component: FileDisplay,
         props: {
           color: 'firebrick',
         },
@@ -150,7 +150,7 @@ const finderUIConfig = {
 import App from 'next/app';
 import React from 'react';
 
-import 'finderui/styles.css';         // -> default FinderUI stylesheet exists in the root of the module
+import 'finderui/styles.css';             // -> default FinderUI stylesheet exists in the root of the module
 
 class Site extends App {
   render() {
@@ -160,7 +160,7 @@ class Site extends App {
 }
 ```
 
-#### components/subfile.js:
+#### pages/subfile.js:
 ```jsx
 import Head from 'next/head'
 import FinderUI from 'finder-ui';
