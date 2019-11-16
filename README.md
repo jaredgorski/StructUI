@@ -22,7 +22,7 @@ import FileDisplay from '../components/FileDisplay';
 import SubFile1Display from './components/SubFile1Display';
 import SubFile2Display from './components/SubFile2Display';
 
-const finderUIConfig = {
+export const finderUIConfig = {
   nodes: {                                // -> `nodes` are directories and files
     myDirectory: {                        // -> directories can hold multiple directories and/or files within them
       label: 'my directory',              // -> `label` defines the node's title in FinderUI
@@ -80,7 +80,7 @@ import Link from 'next/link';
 import FileDisplay from '../components/FileDisplay';
 import SubFileDisplay from '../components/SubFileDisplay';
 
-const finderUIConfig = {
+export const finderUIConfig = {
   config: {                               // -> `config` allows for customizing global FinderUI settings
     toggleIcon: <svg height="18" width="18" viewBox="0 0 30 30"><use href="/static/toggle-icon.svg"></use></svg>,
   },
