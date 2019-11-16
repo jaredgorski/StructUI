@@ -118,24 +118,19 @@ $color-white: rgb(255, 255, 255);
         width: 100%;
 
         .finderui-display-nodelist-toggle {
-          align-items: center;
           background: $color-gray-lt2;
           border: 1px solid $color-gray-lt;
-          border-radius: 50%;
           cursor: pointer;
-          display: flex;
-          height: 23px;
-          justify-content: center;
-          left: 6px;
+          height: 100%;
+          left: 0;
           outline: none;
           padding: 0;
           position: absolute;
-          top: 6px;
-          width: 23px;
-          z-index: 1;
+          text-align: center;
+          top: 0;
+          width: 18px;
 
           .finderui-nodelist-toggle-content {
-            display: flex;
             font-weight: 700;
           }
         }
