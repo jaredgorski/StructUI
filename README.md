@@ -8,8 +8,12 @@ FinderUI is a React component which consumes a configuration object and generate
 
 Conceptually, individual webpages on a website can be thought of as files, and groups of files can be organized into directories. This means that a file explorer interface, like Finder on MacOS or Explorer on Windows, can be a natural user-experience for website navigation. The primary benefit of a component like this for React is that it enables a developer to configure an entire website structure from one file, loading pages/components as lambdas while handling server configuration separately for any pages that need to be navigable from the address bar. In other words, entire pages can be loaded as higher-order React components underneath FinderUI with very little configuration, allowing for fast and light SPA-like navigation (no server middleware). If address-bar navigation (server middleware) is needed, FinderUI can be easily loaded and configured per-page. FinderUI also supports wrapping file/directory navigation links with framework router components (like `Link` from Next.js), which enables pre-fetching and other framework-specific features.
 
-### Live demo
-**To see this component in action, check out https://jaredgorski.com**
+## Try it out
+**To see a full implentation of FinderUI in action, check out https://jaredgorski.com**
+
+Try out a [**basic example**](https://github.com/jaredgorski/FinderUI/tree/master/examples/basic) to get started. More examples exploring FinderUI usage will be coming soon! Here's a gif of what the [basic example](https://github.com/jaredgorski/FinderUI/tree/master/examples/basic) can do:
+
+![](https://raw.githubusercontent.com/jaredgorski/FinderUI/master/examples/basic/.media/finderui_basic_demo.gif)
 
 ## Usage
 FinderUI is meant to contain an entire user experience, so it will often be among the first components invoked in a React application. The below examples provide insight into how the code might actually look, though different applications may vary. Take note that, since the configuration object for FinderUI is a JavaScript object, it can be generated programmatically (as long as this is done synchronously) to improve code organization and maintainability.
