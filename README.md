@@ -1,4 +1,4 @@
-# FinderUI <img align="left" height="80" src="https://raw.githubusercontent.com/jaredgorski/FinderUI/master/.media/finderui_80.png">
+# FinderUI ![npm bundle size](https://img.shields.io/bundlephobia/min/finderui.svg) <img align="left" height="80" src="https://raw.githubusercontent.com/jaredgorski/FinderUI/master/.media/finderui_80.png">
 Simple, dynamic, filesystem-inspired site explorer.
 
 ![](https://raw.githubusercontent.com/jaredgorski/FinderUI/master/.media/finderui_screenshot_1.png)
