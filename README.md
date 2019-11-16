@@ -19,8 +19,8 @@ FinderUI is meant to contain an entire user experience, so it will often be amon
 // Finder opens a display pane with details about the file. Nesting files in directories (via `childNodes`) 
 // results in nested panes within FinderUI.
 import FileDisplay from '../components/FileDisplay';
-import SubFile1Display from '../components/SubFile1Display';
-import SubFile2Display from '../components/SubFile2Display';
+import SubFile1Display from './components/SubFile1Display';
+import SubFile2Display from './components/SubFile2Display';
 
 const finderUIConfig = {
   nodes: {                                // -> `nodes` are directories and files
@@ -53,20 +53,10 @@ const finderUIConfig = {
 
 #### index.js:
 ```jsx
-import ReactDOM from 'react-dom';
-import App from './components/app';
-
-ReactDOM.render(
-  <App />,
-  document.getElementById('root')
-);
-```
-
-#### app.js:
-```jsx
 import React from 'react';
+import ReactDOM from 'react-dom';
 import FinderUI from 'finderui';
-import {finderUIConfig} from '../props/finderui-config';
+import {finderUIConfig} from './finderui-config';
 
 class App extends React.Component {
   render () {
@@ -75,6 +65,11 @@ class App extends React.Component {
     );
   }
 }
+
+ReactDOM.render(
+  <App />,
+  document.getElementById('root')
+);
 ```
 
 ### Advanced example (with Next.js)
