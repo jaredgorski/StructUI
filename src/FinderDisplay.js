@@ -19,22 +19,16 @@ const FinderDisplay = ({config, nodes, openNode}) => {
     const isClass = openNode.display.isClass === true || false;
     let displayComponent = openNode.display.component;
 
-    if (!isClass) {
-      if (module === 'default' && typeof displayComponent !== 'function' && typeof displayComponent.default === 'function') {
-        displayComponent = displayComponent.default;
-      } else if (typeof displayComponent[module] === 'function') {
-        displayComponent = displayComponent[module];
-      }
+    if (module === 'default' && typeof displayComponent !== 'function' && typeof displayComponent.default === 'function') {
+      displayComponent = displayComponent.default;
+    } else if (typeof displayComponent[module] === 'function') {
+      displayComponent = displayComponent[module];
     }
 
     if (typeof displayComponent === 'function') {
-      if (isClass) {
-        return new displayComponent(openNode.display.props);
-      } else {
-        return displayComponent(openNode.display.props);
-      }
+      return React.createElement(displayComponent, openNode.display.props);
     } else {
-      throw new Error('Display component is not a function or the isClass flag is not invoked.');
+      throw new Error('Display component is not a valid React component (function or class).');
     }
   };
 
@@ -59,9 +53,7 @@ const FinderDisplay = ({config, nodes, openNode}) => {
       React.createElement('span', {className: 'finderui-nodelist-toggle-content'}, toggleBtnIcon()),
     ),
     React.createElement('div', {className: 'finderui-display-viewport'},
-      React.createElement('div', {className: 'finderui-display-content-container'},
-        React.createElement(DisplayElement)
-      ),
+      React.createElement(DisplayElement)
     ),
   );
 };

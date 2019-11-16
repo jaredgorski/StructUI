@@ -24,6 +24,7 @@ $color-white: rgb(255, 255, 255);
   position: relative;
   top: 0;
   width: 100vw;
+  -webkit-overflow-scrolling: touch;
 
   .finderui-frame {
     display: flex;
@@ -45,6 +46,7 @@ $color-white: rgb(255, 255, 255);
         min-width: 180px;
         transition: 0.15s;
         width: 0;
+        -webkit-overflow-scrolling: touch;
 
         &.finderui-nodelist-closed {
           border-right: 0px solid transparent;
@@ -109,7 +111,7 @@ $color-white: rgb(255, 255, 255);
         align-items: center;
         display: flex;
         justify-content: center;
-        min-width: 60vw;
+        min-width: calc(30vw + 206px);
         overflow: hidden;
         padding: 0 0 0 36px;
         position: relative;
@@ -146,19 +148,6 @@ $color-white: rgb(255, 255, 255);
           overflow-y: scroll;
           width: 100%;
           -webkit-overflow-scrolling: touch;
-
-          .finderui-display-content-container {
-            overflow: hidden;
-          }
-        }
-
-        @media only screen and (max-width: 759px) {
-          min-width: 284px;
-          padding: 0 0 0 18px;
-
-          .finderui-display-viewport {
-            padding: 0 18px 0 0;
-          }
         }
       }
     }

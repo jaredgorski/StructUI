@@ -1,6 +1,6 @@
 {
   "name": "finderui",
-  "version": "0.4.57",
+  "version": "0.5.0",
   "description": "Simple, dynamic, filesystem-inspired site explorer.",
   "main": "dist/index.js",
   "directories": {
