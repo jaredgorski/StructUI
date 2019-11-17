@@ -10,7 +10,6 @@ export const finderUIConfig = {
           label: 'Hello Name',
           display: {
             component: HelloName,
-            module: 'HelloName',
             props: {
               name: 'Tom',
             },

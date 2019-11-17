@@ -55,7 +55,7 @@ const FinderItem = ({node, handleNodeSelect, isOpen}) => {
   }
 };
 
-const FinderTree = ({nodes, handleNodeSelect}) => {
+const FinderTree = ({nodeState: nodes, handleNodeSelect}) => {
   const finderItems = Object.keys(nodes).map(nodeKey => {
     if (nodes[nodeKey].hasOwnProperty('childNodes')) {
       return React.createElement(FinderDirectory, {

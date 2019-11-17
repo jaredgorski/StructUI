@@ -1,6 +1,6 @@
 const React = require('react');
 
-const FinderDisplay = ({config, nodes, openNode}) => {
+const FinderDisplay = ({config, activeNode}) => {
   const toggleNodelist = () => {
     const nodelistEls = typeof window !== undefined ? document.querySelectorAll('.finderui-nodelist') : [];
     const toggleEl = typeof window !== undefined ? document.querySelector('.finderui-display-nodelist-toggle') : null;
@@ -15,9 +15,9 @@ const FinderDisplay = ({config, nodes, openNode}) => {
   };
 
   const DisplayElement = () => {
-    const module = openNode.display.module || 'default';
-    const isClass = openNode.display.isClass === true || false;
-    let displayComponent = openNode.display.component;
+    const module = activeNode.display.module || 'default';
+    const isClass = activeNode.display.isClass === true || false;
+    let displayComponent = activeNode.display.component;
 
     if (module === 'default' && typeof displayComponent !== 'function' && typeof displayComponent.default === 'function') {
       displayComponent = displayComponent.default;
@@ -26,7 +26,7 @@ const FinderDisplay = ({config, nodes, openNode}) => {
     }
 
     if (typeof displayComponent === 'function') {
-      return React.createElement(displayComponent, openNode.display.props);
+      return React.createElement(displayComponent, activeNode.display.props);
     } else {
       throw new Error('Display component is not a valid React component (function or class).');
     }

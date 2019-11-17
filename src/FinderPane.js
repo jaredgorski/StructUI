@@ -1,43 +1,25 @@
 const React = require('react');
-const {useState} = require('react');
 const FinderDisplay = require('./FinderDisplay');
 const FinderTree = require('./FinderTree');
-const {
-  updateNodesWithSelection,
-  updateNodePathWithSelection,
-} = require('./util/finder-select');
 
-const NodeContent = ({config, nodes}) => {
-  const openNode = Object.values(nodes).find(node => node.open);
+const NodeContent = ({config, nodeState, setState}) => {
+  const activeNode = Object.values(nodeState).find(node => node.open);
 
-  if (openNode) {
-    if (openNode.hasOwnProperty('childNodes')) {
-      const newPaneState = {config, nodes: openNode.childNodes};
-      return React.createElement(FinderPane, newPaneState);
+  if (activeNode) {
+    if (activeNode.hasOwnProperty('childNodes')) {
+      return React.createElement(FinderPane, {config, nodeState: activeNode.childNodes, setState});
     } else {
-      const displayState = {config, nodes, openNode};
-      return React.createElement(FinderDisplay, displayState);
+      return React.createElement(FinderDisplay, {config, activeNode});
     }
   } else {
     return null;
   }
 };
 
-const FinderPane = ({config = {}, nodes: initialNodes, activeNodePath = []}) => {
-  const paneNodes = Array.isArray(activeNodePath) && activeNodePath.length
-    ? updateNodePathWithSelection(initialNodes, activeNodePath) 
-    : initialNodes;
-  const [nodes, setNodes] = useState(paneNodes);
-  const handleNodeSelect = (selectedNode) => {
-    setNodes(updateNodesWithSelection(nodes, {label: null}));
-    setNodes(updateNodesWithSelection(nodes, selectedNode));
-  };
-
-  const paneState = Object.assign({}, {config, nodes, handleNodeSelect});
-
+const FinderPane = ({config = {}, nodeState, setState}) => {
   return React.createElement('div', {className: 'finderui-pane'},
-    React.createElement(FinderTree, paneState),
-    React.createElement(NodeContent, paneState),
+    React.createElement(FinderTree, {config, nodeState, handleNodeSelect: setState}),
+    React.createElement(NodeContent, {config, nodeState, setState}),
   );
 };
 

@@ -1,26 +1,17 @@
-function updateNodesWithSelection(nodeObjs = {}, selectedNode = {}) {
-  return Object.values(nodeObjs).reduce((updatedNodeObjs, nodeObj) => {
-    updatedNodeObjs[nodeObj.label] = nodeObj;
-    updatedNodeObjs[nodeObj.label].open = nodeObj.label === selectedNode.label;
-
-    if (nodeObj.hasOwnProperty('childNodes')) {
-      updatedNodeObjs[nodeObj.label].childNodes = updateNodesWithSelection(nodeObj.childNodes, selectedNode);
-    }
-
-    return updatedNodeObjs;
-  }, {});
-}
-
 function updateNodePathWithSelection(nodeObjs = {}, nodePath = [], labelIndex = 0) {
   return Object.values(nodeObjs).reduce((updatedNodeObjs, nodeObj) => {
-    const label = nodePath[labelIndex];
+    const id = nodePath[labelIndex];
 
-    updatedNodeObjs[nodeObj.label] = nodeObj;
-    updatedNodeObjs[nodeObj.label].open = nodeObj.label === label;
+    updatedNodeObjs[nodeObj.id] = nodeObj;
+    updatedNodeObjs[nodeObj.id].open = nodeObj.id === id;
 
-    if (nodeObj.hasOwnProperty('childNodes') && nodePath.length > labelIndex + 1) {
-      const newLabelIndex = labelIndex + 1;
-      updatedNodeObjs[nodeObj.label].childNodes = updateNodePathWithSelection(nodeObj.childNodes, nodePath, newLabelIndex);
+    if (nodeObj.hasOwnProperty('childNodes')) {
+      if (nodePath.length > labelIndex + 1) {
+        const newLabelIndex = labelIndex + 1;
+        updatedNodeObjs[nodeObj.id].childNodes = updateNodePathWithSelection(nodeObj.childNodes, nodePath, newLabelIndex);
+      } else {
+        updatedNodeObjs[nodeObj.id].childNodes = updateNodePathWithSelection(nodeObj.childNodes, []);
+      }
     }
 
     return updatedNodeObjs;
@@ -28,6 +19,5 @@ function updateNodePathWithSelection(nodeObjs = {}, nodePath = [], labelIndex = 
 }
 
 module.exports = {
-  updateNodesWithSelection,
   updateNodePathWithSelection,
 };

@@ -22,7 +22,6 @@ npm run start
           label: 'Hello Name',
           display: {
             component: HelloName,
-            module: 'HelloName',
             props: {
               name: 'Tom',
             },
