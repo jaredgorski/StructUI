@@ -6,8 +6,13 @@ const FinderDirectory = props => {
     'finderui-directory': true,
     'dir-open': props.node.open === true || false,
   });
+  const elProps = {className: classes};
 
-  return React.createElement('li', {className: classes},
+  if (props.node.elementId) {
+    elProps.id = props.node.elementId;
+  }
+
+  return React.createElement('li', elProps,
     React.createElement(FinderItem, props),
   );
 };
@@ -17,8 +22,13 @@ const FinderFile = props => {
     'finderui-file': true,
     'file-open': props.node.open === true || false,
   });
+  const elProps = {className: classes};
 
-  return React.createElement('li', {className: classes},
+  if (props.node.elementId) {
+    elProps.id = props.node.elementId;
+  }
+
+  return React.createElement('li', elProps,
     React.createElement(FinderItem, props),
   );
 };

@@ -25,10 +25,16 @@ const FinderLayout = props => {
   }
 
   const setState = (selectedNode) => {
-    setNodeState(updateNodePathWithSelection(nodeState, selectedNode.keyPath));
+    const {callback, keyPath} = selectedNode;
+
+    setNodeState(updateNodePathWithSelection(nodeState, keyPath));
 
     if (shouldRoute && router) {
       handleRouting(router, selectedNode);
+    }
+
+    if (callback && typeof callback === 'function') {
+      callback();
     }
   };
 
