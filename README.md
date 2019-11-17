@@ -3,6 +3,11 @@ Simple, dynamic, filesystem-inspired site explorer.
 
 ![](https://raw.githubusercontent.com/jaredgorski/FinderUI/master/.media/finderui_screenshot_1.png)
 
+## Install
+```
+npm i finderui
+```
+
 ## What is it?
 FinderUI is a React component which consumes a configuration object and generates a web application UI in the form of a file explorer. 
 
