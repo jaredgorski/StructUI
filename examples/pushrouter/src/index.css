@@ -1,0 +1,37 @@
+#root {
+  box-sizing: border-box;
+  font-family: -apple-system,BlinkMacSystemFont,'avenir next',avenir,helvetica,'helvetica neue',ubuntu,roboto,noto,'segoe ui',arial,sans-serif;
+}
+
+.fui-nodelist {
+  border-right: 1px dashed lightgray;
+  min-width: 0;
+  transition: 0.15s;
+  width: 180px;
+}
+
+.fui-nodelist.fui-nodelist-closed {
+  border: none;
+}
+
+.fui-nodelist-toggle {
+  border-left: none;
+}
+
+.fui-item-label {
+  display: inline-block;
+  text-overflow: ellipsis;
+}
+
+.fui-directory {
+  font-weight: 500;
+}
+
+.fui-directory a,
+.fui-file a {
+  cursor: pointer;
+}
+
+.fui-nodelist-toggle {
+  cursor: pointer;
+}

@@ -1,150 +1,100 @@
-// COLORS
-$color-blue: rgb(0, 0, 225);
-$color-gray: rgb(174, 174, 178);
 $color-gray-lt: rgb(229, 229, 234);
-$color-gray-lt2: rgb(242, 242, 247);
-$color-white: rgb(255, 255, 255);
 
-// ELEMENTWISE RESET
-.finderui-nodelist {
-  margin:0; padding:0; list-style:none;
-  a{text-decoration:none; color:inherit; cursor:pointer;}
-  button{background-color:transparent; color:inherit; border-width:0; padding:0; cursor:pointer;}
-  h1, h2, h3, h4, h5, h6{margin:0; font-size:inherit; font-weight:inherit;}
-  p,{margin:0;}
-}
-
-// COMPONENT STYLES
-.finderui-main {
-  display: flex;
+.fui-main {
   height: 100vh;
-  left: 0;
   overflow-x: scroll;
   overflow-y: hidden;
-  position: relative;
-  top: 0;
-  width: 100vw;
+  width: 100%;
   -webkit-overflow-scrolling: touch;
+}
 
-  .finderui-frame {
-    display: flex;
-    flex-direction: row;
-    height: 100%;
-    width: 100%;
+.fui-frame {
+  height: 100%;
+  width: 100%;
+}
 
-    .finderui-pane {
-      display: flex;
-      width: 100%;
+.fui-pane {
+  display: flex;
+  flex: auto;
+  height: 100%;
+}
 
-      .finderui-nodelist {
-        background-color: $color-gray-lt2;
-        border-right: 1px solid $color-gray-lt;
-        list-style-type: none;
-        overflow-x: hidden;
-        overflow-y: scroll;
-        padding: 0;
-        min-width: 180px;
-        transition: 0.15s;
-        width: 0;
-        -webkit-overflow-scrolling: touch;
+.fui-nodelist {
+  list-style: none;
+  margin: 0;
+  min-width: 120px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  padding: 0;
+  -webkit-overflow-scrolling: touch;
+}
 
-        &.finderui-nodelist-closed {
-          border-right: 0px solid transparent;
-          min-width: 0;
-          opacity: 0.5;
-        }
-        
-        .finderui-directory,
-        .finderui-file {
-          height: 22px;
-          margin: 0;
-          position: relative;
+main.fui-main .fui-frame .fui-pane ul.fui-nodelist.fui-nodelist-closed {
+  min-width: 0;
+  width: 0;
+}
 
-          a {
-            align-items: center;
-            box-sizing: border-box;
-            cursor: default;
-            display: flex;
-            flex-direction: row;
-            height: 100%;
-            padding: 2px 6px;
-            width: 100%;
-          }
+.fui-directory,
+.fui-file {
+  margin: 0;
+  position: relative;
+}
 
-          .finderui-item-icon {
-            align-items: center;
-            display: inline-flex;
-            justify-content: center;
-            margin: 0 6px 0 0;
-          }
+.fui-directory a,
+.fui-file a {
+  align-items: center;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  padding: 2px 6px;
+  position: relative;
+  width: 100%;
+}
 
-          .finderui-item-label {
-            display: inline-flex;
-            margin: 0;
-            overflow: hidden;
-            white-space: nowrap;
-          }
+.fui-item-icon {
+  align-items: center;
+  display: inline-flex;
+  justify-content: center;
+  margin: 0 6px 0 0;
+}
 
-          &.dir-open,
-          &.file-open {
-            background: $color-blue;
-            color: $color-white;
+.fui-item-label {
+  cursor: pointer;
+  display: inline-flex;
+  margin: 0;
+  overflow: hidden;
+  white-space: nowrap;
+}
 
-            &:after {
-              background: linear-gradient(to right, rgba($color-blue, 0), rgba($color-blue, 1) 90%);
-            }
-          }
+.fui-display {
+  padding: 0 0 0 18px;
+  position: relative;
+  width: 100%;
+}
 
-          &:after {
-            background: linear-gradient(to right, rgba($color-gray-lt2, 0), rgba($color-gray-lt2, 1) 90%);
-            content: '';
-            height: 100%;
-            position: absolute;
-            right: 0;
-            top: 0;
-            width: 18px;
-          }
-        }
-      }
+.fui-nodelist-toggle {
+  border: 1px solid $color-gray-lt;
+  cursor: pointer;
+  height: 100%;
+  left: 0;
+  outline: none;
+  padding: 0;
+  position: absolute;
+  text-align: center;
+  top: 0;
+  width: 18px;
+}
 
-      .finderui-display {
-        align-items: center;
-        display: flex;
-        justify-content: center;
-        min-width: calc(30vw + 206px);
-        overflow: hidden;
-        padding: 0 0 0 36px;
-        position: relative;
-        width: 100%;
+.fui-nodelist-toggle-content {
+  font-weight: 700;
+}
 
-        .finderui-display-nodelist-toggle {
-          background: $color-gray-lt2;
-          border: 1px solid $color-gray-lt;
-          cursor: pointer;
-          height: 100%;
-          left: 0;
-          outline: none;
-          padding: 0;
-          position: absolute;
-          text-align: center;
-          top: 0;
-          width: 18px;
-
-          .finderui-nodelist-toggle-content {
-            font-weight: 700;
-          }
-        }
-
-        .finderui-display-viewport {
-          display: block;
-          height: 100%;
-          padding: 0 36px 0 0;
-          overflow-x: hidden;
-          overflow-y: scroll;
-          width: 100%;
-          -webkit-overflow-scrolling: touch;
-        }
-      }
-    }
-  }
+.fui-display-viewport {
+  display: block;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  width: 100%;
+  -webkit-overflow-scrolling: touch;
 }

@@ -2,15 +2,15 @@ const React = require('react');
 
 const FinderDisplay = ({config, activeNode}) => {
   const toggleNodelist = () => {
-    const nodelistEls = typeof window !== undefined ? document.querySelectorAll('.finderui-nodelist') : [];
-    const toggleEl = typeof window !== undefined ? document.querySelector('.finderui-display-nodelist-toggle') : null;
+    const nodelistEls = typeof window !== undefined ? document.querySelectorAll('.fui-nodelist') : [];
+    const toggleEl = typeof window !== undefined ? document.querySelector('.fui-nodelist-toggle') : null;
 
     if (nodelistEls.length) {
-      nodelistEls.forEach(el => el.classList.toggle('finderui-nodelist-closed'));
+      nodelistEls.forEach(el => el.classList.toggle('fui-nodelist-closed'));
     }
 
     if (toggleEl) {
-      toggleEl.classList.toggle('finderui-toggle-closed');
+      toggleEl.classList.toggle('fui-toggle-closed');
     }
   };
 
@@ -48,11 +48,11 @@ const FinderDisplay = ({config, activeNode}) => {
     }
   };
 
-  return React.createElement('div', {className: 'finderui-display'},
-    React.createElement('button', {className: 'finderui-display-nodelist-toggle', title: toggleBtnTitle(), onClick: () => toggleNodelist()}, 
-      React.createElement('span', {className: 'finderui-nodelist-toggle-content'}, toggleBtnIcon()),
+  return React.createElement('div', {className: 'fui-display'},
+    React.createElement('button', {className: 'fui-nodelist-toggle', title: toggleBtnTitle(), onClick: () => toggleNodelist()}, 
+      React.createElement('span', {className: 'fui-nodelist-toggle-content'}, toggleBtnIcon()),
     ),
-    React.createElement('div', {className: 'finderui-display-viewport'},
+    React.createElement('div', {className: 'fui-display-viewport'},
       React.createElement(DisplayElement)
     ),
   );

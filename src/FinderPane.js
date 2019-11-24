@@ -17,7 +17,7 @@ const NodeContent = ({config, nodeState, setState}) => {
 };
 
 const FinderPane = ({config = {}, nodeState, setState}) => {
-  return React.createElement('div', {className: 'finderui-pane'},
+  return React.createElement('div', {className: 'fui-pane'},
     React.createElement(FinderTree, {config, nodeState, handleNodeSelect: setState}),
     React.createElement(NodeContent, {config, nodeState, setState}),
   );

@@ -3,7 +3,7 @@ const {classNames} = require('./util/finder-classnames');
 
 const FinderDirectory = props => {
   const classes = classNames({
-    'finderui-directory': true,
+    'fui-directory': true,
     'dir-open': props.node.open === true || false,
   });
   const elProps = {className: classes};
@@ -19,7 +19,7 @@ const FinderDirectory = props => {
 
 const FinderFile = props => {
   const classes = classNames({
-    'finderui-file': true,
+    'fui-file': true,
     'file-open': props.node.open === true || false,
   });
   const elProps = {className: classes};
@@ -38,11 +38,11 @@ const FinderItem = ({node, handleNodeSelect, isOpen}) => {
   const itemIcon = () => {
     if (node.open === true) {
       if (node.icon && node.icon.open) {
-        return React.createElement('span', {className: 'finderui-item-icon'}, node.icon.open);
+        return React.createElement('span', {className: 'fui-item-icon'}, node.icon.open);
       }
     } else {
       if (node.icon && node.icon.closed) {
-        return React.createElement('span', {className: 'finderui-item-icon'}, node.icon.closed);
+        return React.createElement('span', {className: 'fui-item-icon'}, node.icon.closed);
       }
     }
 
@@ -54,13 +54,13 @@ const FinderItem = ({node, handleNodeSelect, isOpen}) => {
     return React.createElement(node.link.element, linkProps,
       React.createElement('a', {title: itemTitle},
         itemIcon(),
-        React.createElement('span', {className: 'finderui-item-label'}, node.label),
+        React.createElement('span', {className: 'fui-item-label'}, node.label),
       )
     );
   } else {
     return React.createElement('a', {title: itemTitle, onClick:  () => handleNodeSelect(node)},
       itemIcon(),
-      React.createElement('span', {className: 'finderui-item-label'}, node.label),
+      React.createElement('span', {className: 'fui-item-label'}, node.label),
     );
   }
 };
@@ -82,7 +82,7 @@ const FinderTree = ({nodeState: nodes, handleNodeSelect}) => {
     }
   });
 
-  return React.createElement('ul', {className: 'finderui-nodelist'}, finderItems);
+  return React.createElement('ul', {className: 'fui-nodelist'}, finderItems);
 };
 
 module.exports = FinderTree;

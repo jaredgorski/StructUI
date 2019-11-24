@@ -5,6 +5,7 @@ import {finderUIConfig} from './finderui-config';
 
 import '../../reset.css';
 import '../../../styles.css';
+import './index.css';
 
 class App extends React.Component {
   render () {

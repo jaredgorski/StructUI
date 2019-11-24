@@ -26,6 +26,8 @@ function getProcessedProps(props) {
 
   if (Array.isArray(newProps.activeNodePath) && newProps.activeNodePath.length > 0) {
     newProps.nodes = updateNodePathWithSelection(getProcessedNodes(newProps.nodes), newProps.activeNodePath);
+  } else if (newProps.config && Array.isArray(newProps.config.defaultNodePath) && newProps.config.defaultNodePath.length > 0) {
+    newProps.nodes = updateNodePathWithSelection(getProcessedNodes(newProps.nodes), newProps.config.defaultNodePath);
   } else {
     newProps.nodes = getProcessedNodes(newProps.nodes);
   }

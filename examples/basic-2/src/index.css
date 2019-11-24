@@ -1,0 +1,71 @@
+#root {
+  box-sizing: border-box;
+  font-family: -apple-system,BlinkMacSystemFont,'avenir next',avenir,helvetica,'helvetica neue',ubuntu,roboto,noto,'segoe ui',arial,sans-serif;
+}
+
+.fui-nodelist {
+  background-color: #F2F2F7;
+  border-right: 1px solid #E5E5EA;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  transition: 0.15s;
+  width: 180px;
+}
+
+.fui-nodelist-closed {
+  border-right: 0px solid transparent;
+  opacity: 0.5;
+}
+
+.fui-directory,
+.fui-file {
+  height: 22px;
+}
+
+
+.fui-directory:after,
+.fui-file:after {
+  background: linear-gradient(to right, rgba(242, 242, 247, 0), 10%, rgba(242, 242, 247, 1) 70%);
+  content: '';
+  height: 100%;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 18px;
+}
+
+.fui-directory a:after,
+.fui-file a:after {
+  content: '';
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.fui-directory:hover,
+.fui-file:hover {
+  background: #E5E5EA;
+}
+
+.fui-directory:hover:after,
+.fui-file:hover:after {
+  background: linear-gradient(to right, rgba(229, 229, 234, 0), 10%, rgba(229, 229, 234, 1) 70%);
+}
+
+.fui-directory.dir-open,
+.fui-file.file-open {
+  background: #0000E1;
+  color: white;
+}
+
+.fui-directory.dir-open:after,
+.fui-file.file-open:after {
+  background: linear-gradient(to right, rgba(0, 0, 225, 0), 10%, rgba(0, 0, 225, 1) 70%);
+}
+
+.fui-nodelist-toggle {
+  background: #F2F2F7;
+  cursor: pointer;
+}

@@ -5,6 +5,10 @@ const helloRandomNumber = () => {
   const randomNumber = Math.floor(Math.random() * 1000);
 
   return {
+    icon: {
+      closed: '◧',
+      open: '◨',
+    },
     label: 'Hello Random Number',
     push: {
       title: 'Hello ' + randomNumber,
@@ -25,6 +29,10 @@ export const finderUIConfig = {
   },
   nodes: {
     myDirectory: {
+      icon: {
+        closed: '◧',
+        open: '◨',
+      },
       label: 'My Directory',
       push: {
         title: 'My Directory',
@@ -32,16 +40,37 @@ export const finderUIConfig = {
       },
       childNodes: {
         mySubDirectory: {
+          icon: {
+            closed: '◧',
+            open: '◨',
+          },
           label: 'My Subdirectory',
           push: {
             title: 'My Subdirectory',
             url: '/my-directory/my-subdirectory',
           },
           childNodes: {
-            helloRandomNumber: helloRandomNumber(),
+            helloWorld: {
+              icon: {
+                closed: '◧',
+                open: '◨',
+              },
+              label: 'Hello World',
+              push: {
+                title: 'Hello World',
+                url: '/hello-world',
+              },
+              display: {
+                component: HelloWorld,
+              },
+            },
           },
         },
         helloName: {
+          icon: {
+            closed: '◧',
+            open: '◨',
+          },
           label: 'Hello Name',
           push: {
             title: 'Hello Name',
@@ -56,15 +85,6 @@ export const finderUIConfig = {
         },
       },
     },
-    helloWorld: {
-      label: 'Hello World',
-      push: {
-        title: 'Hello World',
-        url: '/hello-world',
-      },
-      display: {
-        component: HelloWorld,
-      },
-    },
+    helloRandomNumber: helloRandomNumber(),
   },
 };

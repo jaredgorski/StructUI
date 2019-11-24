@@ -4,9 +4,15 @@ import HelloWorld from './components/HelloWorld';
 export const finderUIConfig = {
   nodes: {
     myDirectory: {
+      icon: {
+        open: '↬',
+      },
       label: 'My Directory',
       childNodes: {
         helloName: {
+          icon: {
+            open: '↬',
+          },
           label: 'Hello Name',
           display: {
             component: HelloName,
@@ -18,6 +24,9 @@ export const finderUIConfig = {
       },
     },
     helloWorld: {
+      icon: {
+        open: '↬',
+      },
       label: 'Hello World',
       display: {
         component: HelloWorld,

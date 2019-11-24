@@ -38,8 +38,8 @@ const FinderLayout = props => {
     }
   };
 
-  return React.createElement('main', {className: 'finderui-main'},
-    React.createElement('div', {className: 'finderui-frame'},
+  return React.createElement('main', {className: 'fui-main'},
+    React.createElement('div', {className: 'fui-frame'},
       React.createElement(FinderPane, {config, nodeState, setState})
     )
   );
