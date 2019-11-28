@@ -189,4 +189,4 @@ function SubFile() {
 
 Try out a [**basic example**](https://github.com/jaredgorski/FinderUI/tree/master/examples/basic) to get started. More examples exploring FinderUI usage will be coming soon! Here's a gif of what the [basic example](https://github.com/jaredgorski/FinderUI/tree/master/examples/basic) can do:
 
-![](https://raw.githubusercontent.com/jaredgorski/FinderUI/master/examples/basic/.media/finderui_basic_demo.gif)
+![](https://raw.githubusercontent.com/jaredgorski/FinderUI/master/examples/basic/.media/basic_demo.gif)
