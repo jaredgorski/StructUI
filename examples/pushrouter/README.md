@@ -1,6 +1,6 @@
 # FinderUI: pushRouter example
 
-![](https://raw.githubusercontent.com/jaredgorski/FinderUI/master/examples/pushrouter/.media/pushrouter_demo.gif)
+![](https://raw.githubusercontent.com/jaredgorski/FinderUI/master/examples/pushrouter/.media/pushrouter-demo.gif)
 
 This example demonstrates a basic FinderUI setup with the `pushRouter` enabled. The `pushRouter` accomplishes very basic interaction with the HTML5 History API, meaning that it enacts changes in the `document.title` and `window.location` to give the illusion of navigation between separate webpages when a given view is activated within FinderUI.
 
