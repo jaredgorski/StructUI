@@ -58,7 +58,7 @@ export const finderUIConfig = {
               label: 'Hello World',
               push: {
                 title: 'Hello World',
-                url: '/hello-world',
+                url: 'my-directory/my-subdirectory/hello-world',
               },
               display: {
                 component: HelloWorld,
