@@ -49,14 +49,23 @@ const FinderItem = ({node, handleNodeSelect, isOpen}) => {
     return null;
   };
 
-  if (node.link && node.link.element && node.link.props) {
-    const linkProps = node.link.props || {};
-    return React.createElement(node.link.element, linkProps,
-      React.createElement('a', {title: itemTitle},
+  if (node.link && node.link.props) {
+    const linkElProps = node.link.props || {};
+
+    if (node.link.element) {
+      return React.createElement(node.link.element, linkElProps,
+        React.createElement('a', {title: itemTitle},
+          itemIcon(),
+          React.createElement('span', {className: 'fui-item-label'}, node.label),
+        )
+      );
+    } else {
+      const linkProps = Object.assign({}, {title: itemTitle}, linkElProps);
+      return React.createElement('a', linkProps,
         itemIcon(),
         React.createElement('span', {className: 'fui-item-label'}, node.label),
-      )
-    );
+      );
+    }
   } else {
     return React.createElement('a', {title: itemTitle, onClick:  () => handleNodeSelect(node)},
       itemIcon(),
