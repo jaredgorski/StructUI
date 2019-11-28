@@ -1,6 +1,6 @@
 # FinderUI: Basic example
 
-![](https://raw.githubusercontent.com/jaredgorski/FinderUI/master/examples/basic/.media/basic_demo.gif)
+![](https://raw.githubusercontent.com/jaredgorski/FinderUI/master/examples/basic/.media/basic-demo.gif)
 
 This example demonstrates the simplest form of FinderUI-based web app. It consists of a basic configuration, with one `directory` node (`myDirectory`, labeled as `My Directory` in the UI) containing one `file` within the `helloName` node (labeled as `Hello Name`) and one `file` node (labeled as `Hello World`).
 
