@@ -1,6 +1,6 @@
 # FinderUI: Basic example #2
 
-![](https://raw.githubusercontent.com/jaredgorski/FinderUI/master/examples/basic2/.media/basic2_demo.gif)
+![](https://raw.githubusercontent.com/jaredgorski/FinderUI/master/examples/basic-2/.media/basic2-demo.gif)
 
 This example is another basic demonstration of a FinderUI-based web app, this time with more custom styles applied. See the `basic` demo.
 
