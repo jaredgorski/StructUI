@@ -74,6 +74,7 @@ const FinderItem = ({node, handleNodeSelect, isOpen}) => {
       if (!linkProps.hasOwnProperty('href')) {
         linkProps.onClick = onClick;
         linkProps.onKeyPress = onKeyPress;
+        linkProps.tabIndex = '0';
       }
 
       return React.createElement('a', linkProps,
@@ -84,7 +85,7 @@ const FinderItem = ({node, handleNodeSelect, isOpen}) => {
       );
     }
   } else {
-    return React.createElement('a', {title: itemTitle, onClick, onKeyPress},
+    return React.createElement('a', {title: itemTitle, onClick, onKeyPress, tabIndex: '0'},
       React.createElement('span', {tabIndex: '-1'},
         itemIcon(),
         React.createElement('span', {className: 'fui-item-label'}, node.label),

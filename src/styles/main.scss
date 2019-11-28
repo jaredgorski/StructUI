@@ -60,6 +60,18 @@ main.fui-main .fui-frame .fui-pane ul.fui-nodelist.fui-nodelist-closed {
   width: 100%;
 }
 
+.fui-directory>a:focus,
+.fui-file>a:focus,
+.fui-directory>a>span:focus,
+.fui-file>a>span:focus {
+  outline: none;
+}
+
+.fui-directory>a:focus>span,
+.fui-file>a:focus>span {
+  box-shadow: 0 0 5px 0 dodgerblue inset;
+}
+
 .fui-item-icon {
   align-items: center;
   display: inline-flex;
@@ -95,7 +107,21 @@ main.fui-main .fui-frame .fui-pane ul.fui-nodelist.fui-nodelist-closed {
 }
 
 .fui-nodelist-toggle-content {
+  align-items: center;
+  display: inline-flex;
+  height: 100%;
+  justify-content: center;
   font-weight: 700;
+  width: 100%;
+}
+
+.fui-nodelist-toggle:focus,
+.fui-nodelist-toggle-content:focus {
+  outline: none;
+}
+
+.fui-nodelist-toggle:focus .fui-nodelist-toggle-content {
+  box-shadow: 0 0 5px 0 dodgerblue inset;
 }
 
 .fui-display-viewport {
