@@ -49,27 +49,46 @@ const FinderItem = ({node, handleNodeSelect, isOpen}) => {
     return null;
   };
 
+  const onClick = () => handleNodeSelect(node);
+  const onKeyPress = e => {
+    if (e.key === 'Enter') {
+      handleNodeSelect(node);
+    }
+  };
+
   if (node.link && node.link.props) {
     const linkElProps = node.link.props || {};
 
     if (node.link.element) {
       return React.createElement(node.link.element, linkElProps,
         React.createElement('a', {title: itemTitle},
-          itemIcon(),
-          React.createElement('span', {className: 'fui-item-label'}, node.label),
+          React.createElement('span', {tabIndex: '-1'},
+            itemIcon(),
+            React.createElement('span', {className: 'fui-item-label'}, node.label),
+          )
         )
       );
     } else {
       const linkProps = Object.assign({}, {title: itemTitle}, linkElProps);
+
+      if (!linkProps.hasOwnProperty('href')) {
+        linkProps.onClick = onClick;
+        linkProps.onKeyPress = onKeyPress;
+      }
+
       return React.createElement('a', linkProps,
-        itemIcon(),
-        React.createElement('span', {className: 'fui-item-label'}, node.label),
+        React.createElement('span', {tabIndex: '-1'},
+          itemIcon(),
+          React.createElement('span', {className: 'fui-item-label'}, node.label),
+        )
       );
     }
   } else {
-    return React.createElement('a', {title: itemTitle, onClick:  () => handleNodeSelect(node)},
-      itemIcon(),
-      React.createElement('span', {className: 'fui-item-label'}, node.label),
+    return React.createElement('a', {title: itemTitle, onClick, onKeyPress},
+      React.createElement('span', {tabIndex: '-1'},
+        itemIcon(),
+        React.createElement('span', {className: 'fui-item-label'}, node.label),
+      )
     );
   }
 };

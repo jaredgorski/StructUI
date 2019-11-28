@@ -48,9 +48,16 @@ const FinderDisplay = ({config, activeNode}) => {
     }
   };
 
+  const onClick = () => toggleNodelist();
+  const onKeyPress = e => {
+    if (e.keyCode === 13) {
+      toggleNodelist();
+    }
+  };
+
   return React.createElement('div', {className: 'fui-display'},
-    React.createElement('button', {className: 'fui-nodelist-toggle', title: toggleBtnTitle(), onClick: () => toggleNodelist()}, 
-      React.createElement('span', {className: 'fui-nodelist-toggle-content'}, toggleBtnIcon()),
+    React.createElement('button', {className: 'fui-nodelist-toggle', title: toggleBtnTitle(), onClick, onKeyPress, tabIndex: '0'}, 
+      React.createElement('span', {className: 'fui-nodelist-toggle-content', tabIndex: '-1'}, toggleBtnIcon()),
     ),
     React.createElement('div', {className: 'fui-display-viewport'},
       React.createElement(DisplayElement)

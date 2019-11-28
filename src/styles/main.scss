@@ -43,12 +43,20 @@ main.fui-main .fui-frame .fui-pane ul.fui-nodelist.fui-nodelist-closed {
 .fui-directory a,
 .fui-file a {
   align-items: center;
+  display: flex;
+  height: 100%;
+  position: relative;
+  width: 100%;
+}
+
+.fui-directory a>span,
+.fui-file a>span {
+  align-items: center;
   box-sizing: border-box;
   display: flex;
   flex-direction: row;
   height: 100%;
   padding: 2px 6px;
-  position: relative;
   width: 100%;
 }
 
@@ -79,7 +87,6 @@ main.fui-main .fui-frame .fui-pane ul.fui-nodelist.fui-nodelist-closed {
   cursor: pointer;
   height: 100%;
   left: 0;
-  outline: none;
   padding: 0;
   position: absolute;
   text-align: center;
