@@ -69,7 +69,7 @@ main.fui-main .fui-frame .fui-pane ul.fui-nodelist.fui-nodelist-closed {
 
 .fui-directory>a:focus>span,
 .fui-file>a:focus>span {
-  box-shadow: 0 0 5px 0 dodgerblue inset;
+  border: 1px dotted black;
 }
 
 .fui-item-icon {
@@ -121,7 +121,7 @@ main.fui-main .fui-frame .fui-pane ul.fui-nodelist.fui-nodelist-closed {
 }
 
 .fui-nodelist-toggle:focus .fui-nodelist-toggle-content {
-  box-shadow: 0 0 5px 0 dodgerblue inset;
+  border: 1px dotted black;
 }
 
 .fui-display-viewport {
