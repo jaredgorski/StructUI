@@ -8,7 +8,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "finderui": "^0.10.10",
+    "finderui": "^0.10.11",
     "react": "^16.12.0",
     "react-dom": "^16.12.0"
   },
