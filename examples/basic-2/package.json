@@ -3,12 +3,13 @@
   "version": "1.0.0",
   "description": "Basic, styled FinderUI example.",
   "scripts": {
+    "dev": "./dev.sh",
     "start": "webpack-dev-server --devtool eval"
   },
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "finderui": "^0.10.11",
+    "finderui": "^0.11.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0"
   },

@@ -5,13 +5,13 @@ export const finderUIConfig = {
   nodes: {
     myDirectory: {
       icon: {
-        open: '↬',
+        open: '+',
       },
       label: 'My Directory',
       childNodes: {
         helloName: {
           icon: {
-            open: '↬',
+            open: '+',
           },
           label: 'Hello Name',
           display: {
@@ -25,7 +25,7 @@ export const finderUIConfig = {
     },
     helloWorld: {
       icon: {
-        open: '↬',
+        open: '+',
       },
       label: 'Hello World',
       display: {

@@ -3,25 +3,28 @@
   font-family: -apple-system,BlinkMacSystemFont,'avenir next',avenir,helvetica,'helvetica neue',ubuntu,roboto,noto,'segoe ui',arial,sans-serif;
 }
 
+@media (min-width: 1024px) {
+  .fui-pane-container {
+      transition: 0.15s;
+      width: 30vw;
+  }
+}
+
+.fui-pane-container {
+  scroll-snap-type: x mandatory;
+}
+
 .fui-nodelist {
   background-color: #F2F2F7;
   border-right: 1px solid #E5E5EA;
-  overflow-x: hidden;
-  overflow-y: scroll;
-  transition: 0.15s;
-  width: 180px;
-}
-
-.fui-nodelist-closed {
-  border-right: 0px solid transparent;
-  opacity: 0.5;
+  scroll-snap-align: start;
 }
 
 .fui-directory,
 .fui-file {
   height: 22px;
+  position: relative;
 }
-
 
 .fui-directory:after,
 .fui-file:after {
@@ -63,9 +66,4 @@
 .fui-directory.dir-open:after,
 .fui-file.file-open:after {
   background: linear-gradient(to right, rgba(0, 0, 225, 0), 10%, rgba(0, 0, 225, 1) 70%);
-}
-
-.fui-nodelist-toggle {
-  background: #F2F2F7;
-  cursor: pointer;
 }

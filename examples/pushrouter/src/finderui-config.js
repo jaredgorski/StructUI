@@ -12,7 +12,7 @@ const helloRandomNumber = () => {
     label: 'Hello Random Number',
     push: {
       title: 'Hello ' + randomNumber,
-      url: '/my-subdirectory/hello-' + randomNumber,
+      url: '/hello-' + randomNumber,
     },
     display: {
       component: HelloName,
