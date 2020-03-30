@@ -3,7 +3,7 @@ const {useState, useEffect, useReducer} = require('react');
 const FinderDisplay = require('./FinderDisplay');
 const FinderPane = require('./FinderPane');
 const {getNodeAtPath, updateNodePathWithSelection} = require('./util/finder-select');
-const {FUIRouter, handleRouting} = require('./util/finder-pushrouter');
+const {FUIRouter, detachRouter, initializeRouter, handleRouting} = require('./util/finder-pushrouter');
 
 const FinderLayout = props => {
   const {config, nodes, initialActiveNode = {}} = props;
@@ -17,6 +17,7 @@ const FinderLayout = props => {
     activeNode: initialActiveNode,
     nodeState: nodes,
   });
+  const [activeNodeKeyPath, setActiveNodeKeyPath] = useState(initialActiveNode.keyPath);
 
   // Programmatic responsive
   useEffect(() => {
@@ -61,36 +62,61 @@ const FinderLayout = props => {
   });
 
   // Routing
-  const shouldRoute = config && config.pushRouter === true;
-  let router = null;
+  const {pushRouter: {enable: shouldRoute, handleBackButton = true} = {}} = config;
   if (shouldRoute) {
+    const [router, setRouter] = useState(null);
+    const [popStateFlag, setPopStateFlag] = useState(false);
+
+    const handlePopState = (e = {}) => {
+      if (handleBackButton) {
+        setPopStateFlag(true);
+        const {state: {activeNodeKeyPath} = {}} = e;
+        if (activeNodeKeyPath) {
+          setActiveNodeKeyPath(activeNodeKeyPath);
+        }
+      }
+    };
+
     useEffect(() => {
       if (config.routerCallback && typeof config.routerCallback === 'function') {
-        router = FUIRouter(config.routerCallback);
+        setRouter(FUIRouter({callback: config.routerCallback, onPopState: handlePopState}));
       } else {
-        router = FUIRouter();
+        setRouter(FUIRouter({onPopState: handlePopState}));
       }
+    }, []);
+
+    useEffect(() => {
+      initializeRouter(router, {activeNodeKeyPath}, state.activeNode);
+      console.log('ROUTER: ', router);
 
       return () => {
-        router.clear();
+        detachRouter(router);
       };
-    });
+    }, [router]);
+
+    useEffect(() => {
+      if (!popStateFlag) {
+        handleRouting(router, {activeNodeKeyPath}, state.activeNode);
+      }
+
+      setPopStateFlag(false);
+    }, [state.activeNode]);
   }
 
   // Display and navigation logic
+  useEffect(() => {
+    dispatch({
+      payload: {
+        activeNode: getNodeAtPath(state.nodeState, activeNodeKeyPath),
+        nodeState: updateNodePathWithSelection(state.nodeState, activeNodeKeyPath),
+      },
+    });
+  }, [activeNodeKeyPath]);
+
   const handleNodeSelect = (selectedNode) => {
     const {callback, keyPath} = selectedNode;
 
-    dispatch({
-      payload: {
-        activeNode: selectedNode,
-        nodeState: updateNodePathWithSelection(state.nodeState, keyPath),
-      },
-    });
-
-    if (shouldRoute && router) {
-      handleRouting(router, selectedNode);
-    }
+    setActiveNodeKeyPath(keyPath);
 
     if (callback && typeof callback === 'function') {
       callback();
@@ -99,16 +125,7 @@ const FinderLayout = props => {
 
   const FUILink = ({children, className, keypath: keyPath = []}) => {
     const onClick = () => {
-      dispatch({
-        payload: {
-          activeNode: getNodeAtPath(state.nodeState, keyPath),
-          nodeState: updateNodePathWithSelection(state.nodeState, keyPath),
-        },
-      });
-
-      if (shouldRoute && router) {
-        handleRouting(router, selectedNode);
-      }
+      setActiveNodeKeyPath(keyPath);
     };
 
     return React.createElement('span', {className, onClick}, children);

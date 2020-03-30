@@ -1,4 +1,5 @@
-function FUIRouter(callback = Function()) {
+function FUIRouter({callback = Function(), onPopState}) {
+  console.log('FUIRouter is here');
   function _callback(arg) {
     callback(arg);
   }
@@ -11,22 +12,24 @@ function FUIRouter(callback = Function()) {
     }
   }
 
-  function push(url, title) {
-    history.pushState({url, title}, title, url || window.location.pathname);
+  function push(state = {}, title = '', url = '') {
+    const routeState = {...state, url, as: url};
+    history.pushState(routeState, title, url || window.location.pathname);
     _callbackAndTitle(title);
 
     return document.location.href;
   }
 
-  function replace(url, title) {
-    history.replaceState({url, title}, title, url || window.location.pathname);
+  function replace(state = {}, title = '', url = '') {
+    const routeState = {...state, url, as: url};
+    history.replaceState(routeState, title, url || window.location.pathname);
     _callbackAndTitle(title);
 
     return document.location.href;
   }
 
   function _onpopstate(e) {
-    push(e.state.url, e.state.title);
+    onPopState(e);
     _callback(document.location.href);
   }
 
@@ -45,14 +48,29 @@ function FUIRouter(callback = Function()) {
   };
 }
 
-function handleRouting(router, selectedNode) {
-  if (selectedNode.push) {
-    const {url, title} = selectedNode.push;
-    router.push(url, title);
-  } else if (selectedNode.replace) {
-    const {url, title} = selectedNode.replace;
-    router.replace(url, title);
+function detachRouter(router) {
+  if (router) {
+    router.clear();
   }
 }
 
-module.exports = {FUIRouter, handleRouting};
+function initializeRouter(router, state, activeNode) {
+  if (router) {
+    const {title, url} = Object.assign(activeNode.replace || {}, activeNode.push || {});
+    router.replace(state, title || document.title, url || document.location.href);
+  }
+}
+
+function handleRouting(router, state, activeNode) {
+  if (router && activeNode) {
+    if (activeNode.push) {
+      const {title, url} = activeNode.push;
+      router.push(state, title, url);
+    } else if (activeNode.replace) {
+      const {title, url} = activeNode.replace;
+      router.replace(state, title, url);
+    }
+  }
+}
+
+module.exports = {FUIRouter, detachRouter, initializeRouter, handleRouting};
