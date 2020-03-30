@@ -25,7 +25,9 @@ const helloRandomNumber = () => {
 
 export const finderUIConfig = {
   config: {
-    pushRouter: true,
+    pushRouter: {
+      enable: true,
+    },
   },
   nodes: {
     myDirectory: {
