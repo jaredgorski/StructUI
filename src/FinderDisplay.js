@@ -1,23 +1,17 @@
 const React = require('react');
+const {useEffect} = require('react');
 
-const FinderDisplay = ({config, activeNode}) => {
-  const toggleNodelist = () => {
-    const nodelistEls = typeof window !== undefined ? document.querySelectorAll('.fui-nodelist') : [];
-    const toggleEl = typeof window !== undefined ? document.querySelector('.fui-nodelist-toggle') : null;
-
-    if (nodelistEls.length) {
-      nodelistEls.forEach(el => el.classList.toggle('fui-nodelist-closed'));
-    }
-
-    if (toggleEl) {
-      toggleEl.classList.toggle('fui-toggle-closed');
-    }
-  };
-
+const FinderDisplay = ({config, activeNode, fuiDisplayUtils, mobileMode}) => {
   const DisplayElement = () => {
     const module = activeNode.display.module || 'default';
     const isClass = activeNode.display.isClass === true || false;
     let displayComponent = activeNode.display.component;
+
+    useEffect(() => {
+      if (mobileMode) {
+        document.documentElement.classList.add('fui-pane-closed');
+      }
+    }, []);
 
     if (module === 'default' && typeof displayComponent !== 'function' && typeof displayComponent.default === 'function') {
       displayComponent = displayComponent.default;
@@ -26,10 +20,18 @@ const FinderDisplay = ({config, activeNode}) => {
     }
 
     if (typeof displayComponent === 'function') {
-      return React.createElement(displayComponent, activeNode.display.props);
+      return React.createElement(displayComponent, {...activeNode.display.props, fuiDisplayUtils});
     } else {
       throw new Error('Display component is not a valid React component (function or class).');
     }
+  };
+
+  const toggleNodelist = () => {
+    if (typeof document === undefined) {
+      return;
+    }
+
+    document.documentElement.classList.toggle('fui-pane-closed');
   };
 
   const toggleBtnIcon = () => {
@@ -60,7 +62,9 @@ const FinderDisplay = ({config, activeNode}) => {
       React.createElement('span', {className: 'fui-nodelist-toggle-content', tabIndex: '-1'}, toggleBtnIcon()),
     ),
     React.createElement('div', {className: 'fui-display-viewport'},
-      React.createElement(DisplayElement)
+      React.createElement('div', {className: 'fui-display-document'},
+        React.createElement(DisplayElement)
+      ),
     ),
   );
 };

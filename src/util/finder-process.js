@@ -1,4 +1,4 @@
-const {updateNodePathWithSelection} = require('./finder-select');
+const {getNodeAtPath, updateNodePathWithSelection} = require('./finder-select');
 
 function addNodeIdsAndPaths(nodes, currentPath = []) {
   Object.keys(nodes).forEach(key => {
@@ -25,9 +25,17 @@ function getProcessedProps(props) {
   const newProps = Object.assign({}, props);
 
   if (Array.isArray(newProps.activeNodePath) && newProps.activeNodePath.length > 0) {
-    newProps.nodes = updateNodePathWithSelection(getProcessedNodes(newProps.nodes), newProps.activeNodePath);
+    let {activeNodePath, nodes} = newProps;
+
+    nodes = getProcessedNodes(nodes);
+    newProps.nodes = updateNodePathWithSelection(nodes, activeNodePath);
+    newProps.initialActiveNode = getNodeAtPath(nodes, activeNodePath);
   } else if (newProps.config && Array.isArray(newProps.config.defaultNodePath) && newProps.config.defaultNodePath.length > 0) {
-    newProps.nodes = updateNodePathWithSelection(getProcessedNodes(newProps.nodes), newProps.config.defaultNodePath);
+    let {config: {defaultNodePath}, nodes} = newProps;
+
+    nodes = getProcessedNodes(nodes);
+    newProps.nodes = updateNodePathWithSelection(nodes, defaultNodePath);
+    newProps.initialActiveNode = getNodeAtPath(nodes, defaultNodePath);
   } else {
     newProps.nodes = getProcessedNodes(newProps.nodes);
   }

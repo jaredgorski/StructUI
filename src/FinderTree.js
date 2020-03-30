@@ -33,7 +33,7 @@ const FinderFile = props => {
   );
 };
 
-const FinderItem = ({node, handleNodeSelect, isOpen}) => {
+const FinderItem = ({node, handleNodeSelect}) => {
   const itemTitle = node.title ? node.title : node.label;
   const itemIcon = () => {
     if (node.open === true) {
@@ -51,7 +51,7 @@ const FinderItem = ({node, handleNodeSelect, isOpen}) => {
 
   const onClick = () => handleNodeSelect(node);
   const onKeyPress = e => {
-    if (e.key === 'Enter') {
+    if (e.keyCode === 13) {
       handleNodeSelect(node);
     }
   };
