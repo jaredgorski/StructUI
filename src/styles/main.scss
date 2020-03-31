@@ -142,11 +142,7 @@ html:not(.fui-mobile-mode).fui-pane-closed main.fui-main .fui-frame {
   width: 100%;
 }
 
-.fui-mobile-mode {
-  &:not(.fui-pane-closed) {
-    overflow: hidden;
-  }
-
+@mixin mobileMode {
   .fui-pane-container {
     left: 0;
     max-width: none;
@@ -164,6 +160,14 @@ html:not(.fui-mobile-mode).fui-pane-closed main.fui-main .fui-frame {
   .fui-display-viewport {
     width: 100vw;
   }
+}
+
+.fui-mobile-mode {
+  @include mobileMode;
+
+  &:not(.fui-pane-closed) {
+    overflow: hidden;
+  }
 
   &.fui-pane-closed {
     .fui-pane-container {
@@ -174,6 +178,8 @@ html:not(.fui-mobile-mode).fui-pane-closed main.fui-main .fui-frame {
 }
 
 @media (max-width: 1023px) {
+  @include mobileMode;
+
   html {
     opacity: 0;
     transition: 0.3s;

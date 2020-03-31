@@ -1,5 +1,4 @@
 function FUIRouter({callback = Function(), onPopState}) {
-  console.log('FUIRouter is here');
   function _callback(arg) {
     callback(arg);
   }

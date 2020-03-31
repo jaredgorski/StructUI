@@ -11,13 +11,51 @@ const FinderLayout = props => {
   const [mobileMode, setMobileMode] = useState(false);
 
   const reducer = (state, action) => {
-    return { ...state, ...action.payload };
+    return {...state, ...action.payload};
   };
   const [state, dispatch] = useReducer(reducer, {
     activeNode: initialActiveNode,
+    activeNodeKeyPath: initialActiveNode.keyPath || [],
     nodeState: nodes,
   });
-  const [activeNodeKeyPath, setActiveNodeKeyPath] = useState(initialActiveNode.keyPath);
+
+  // View setter and helpers
+  const isDisplayNode = node => {
+    if (
+      node &&
+      node.hasOwnProperty('display') &&
+      !node.hasOwnProperty('childNodes')
+    ) {
+      return true;
+    }
+
+    return false;
+  };
+
+  const setPane = open => {
+    if (open) {
+      document.documentElement.classList.remove('fui-pane-closed');
+    } else {
+      document.documentElement.classList.add('fui-pane-closed');
+    }
+  };
+
+  const togglePane = () => {
+    document.documentElement.classList.toggle('fui-pane-closed');
+  };
+
+  const setView = keyPath => {
+    const activeNodeKeyPath = keyPath || node.keyPath;
+    const nodeState = updateNodePathWithSelection(state.nodeState, keyPath);
+    const activeNode = getNodeAtPath(nodeState, keyPath);
+    const payload = {
+      activeNode,
+      activeNodeKeyPath,
+      nodeState,
+    };
+
+    dispatch({payload});
+  };
 
   // Programmatic responsive
   useEffect(() => {
@@ -38,23 +76,22 @@ const FinderLayout = props => {
       document.documentElement.classList.add('fui-mobile-mode');
     } else {
       document.documentElement.classList.remove('fui-mobile-mode');
+      setPane(true);
     }
   }, [mobileMode]);
 
   // Programmatic menu scroll
   const handlePaneContainerAutoScroll = () => {
-    if (typeof document !== undefined) {
-      setTimeout(() => {
-        const nodelistEls = document.querySelectorAll('.fui-nodelist');
-        if (nodelistEls.length > 0) {
-          nodelistEls[nodelistEls.length - 1].scrollIntoView({
-            behavior: 'smooth',
-            block: 'start',
-            inline: 'start',
-          });
-        }
-      }, 300);
-    }
+    setTimeout(() => {
+      const nodelistEls = document.querySelectorAll('.fui-nodelist');
+      if (nodelistEls.length > 0) {
+        nodelistEls[nodelistEls.length - 1].scrollIntoView({
+          behavior: 'smooth',
+          block: 'start',
+          inline: 'start',
+        });
+      }
+    }, 300);
   };
 
   useEffect(() => {
@@ -72,7 +109,7 @@ const FinderLayout = props => {
         setPopStateFlag(true);
         const {state: {activeNodeKeyPath} = {}} = e;
         if (activeNodeKeyPath) {
-          setActiveNodeKeyPath(activeNodeKeyPath);
+          setView(activeNodeKeyPath);
         }
       }
     };
@@ -86,8 +123,7 @@ const FinderLayout = props => {
     }, []);
 
     useEffect(() => {
-      initializeRouter(router, {activeNodeKeyPath}, state.activeNode);
-      console.log('ROUTER: ', router);
+      initializeRouter(router, {activeNodeKeyPath: state.activeNodeKeyPath}, state.activeNode);
 
       return () => {
         detachRouter(router);
@@ -96,27 +132,17 @@ const FinderLayout = props => {
 
     useEffect(() => {
       if (!popStateFlag) {
-        handleRouting(router, {activeNodeKeyPath}, state.activeNode);
+        handleRouting(router, {activeNodeKeyPath: state.activeNodeKeyPath}, state.activeNode);
       }
-
       setPopStateFlag(false);
-    }, [state.activeNode]);
+    }, [state.activeNodeKeyPath]);
   }
 
   // Display and navigation logic
-  useEffect(() => {
-    dispatch({
-      payload: {
-        activeNode: getNodeAtPath(state.nodeState, activeNodeKeyPath),
-        nodeState: updateNodePathWithSelection(state.nodeState, activeNodeKeyPath),
-      },
-    });
-  }, [activeNodeKeyPath]);
-
   const handleNodeSelect = (selectedNode) => {
     const {callback, keyPath} = selectedNode;
 
-    setActiveNodeKeyPath(keyPath);
+    setView(keyPath);
 
     if (callback && typeof callback === 'function') {
       callback();
@@ -125,7 +151,7 @@ const FinderLayout = props => {
 
   const FUILink = ({children, className, keypath: keyPath = []}) => {
     const onClick = () => {
-      setActiveNodeKeyPath(keyPath);
+      setView(keyPath);
     };
 
     return React.createElement('span', {className, onClick}, children);
@@ -134,8 +160,8 @@ const FinderLayout = props => {
   const DisplayContent = () => {
     const fuiDisplayUtils = {FUILink};
 
-    if (state.activeNode.hasOwnProperty('display') && !state.activeNode.hasOwnProperty('childNodes')) {
-      return React.createElement(FinderDisplay, {config, activeNode: state.activeNode, fuiDisplayUtils, mobileMode});
+    if (isDisplayNode(state.activeNode)) {
+      return React.createElement(FinderDisplay, {config, activeNode: state.activeNode, setPane, togglePane, fuiDisplayUtils, mobileMode});
     }
 
     return null;

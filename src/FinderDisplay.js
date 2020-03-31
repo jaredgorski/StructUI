@@ -1,17 +1,20 @@
 const React = require('react');
 const {useEffect} = require('react');
 
-const FinderDisplay = ({config, activeNode, fuiDisplayUtils, mobileMode}) => {
+const FinderDisplay = ({config, activeNode, setPane, togglePane, fuiDisplayUtils, mobileMode}) => {
   const DisplayElement = () => {
-    const module = activeNode.display.module || 'default';
-    const isClass = activeNode.display.isClass === true || false;
-    let displayComponent = activeNode.display.component;
-
     useEffect(() => {
       if (mobileMode) {
-        document.documentElement.classList.add('fui-pane-closed');
+        setPane(false);
       }
     }, []);
+
+    const {display: {module = 'default'} = {}} = activeNode;
+    let {display: {component: displayComponent} = {}} = activeNode;
+
+    if (!module || !displayComponent) {
+      throw new Error(`Display configuration not well formed at path: ${activeNode.keyPath}`);
+    }
 
     if (module === 'default' && typeof displayComponent !== 'function' && typeof displayComponent.default === 'function') {
       displayComponent = displayComponent.default;
@@ -24,14 +27,6 @@ const FinderDisplay = ({config, activeNode, fuiDisplayUtils, mobileMode}) => {
     } else {
       throw new Error('Display component is not a valid React component (function or class).');
     }
-  };
-
-  const toggleNodelist = () => {
-    if (typeof document === undefined) {
-      return;
-    }
-
-    document.documentElement.classList.toggle('fui-pane-closed');
   };
 
   const toggleBtnIcon = () => {
@@ -50,10 +45,10 @@ const FinderDisplay = ({config, activeNode, fuiDisplayUtils, mobileMode}) => {
     }
   };
 
-  const onClick = () => toggleNodelist();
+  const onClick = () => togglePane();
   const onKeyPress = e => {
     if (e.keyCode === 13) {
-      toggleNodelist();
+      togglePane();
     }
   };
 
