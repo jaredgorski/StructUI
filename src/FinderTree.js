@@ -51,7 +51,7 @@ const FinderItem = ({node, handleNodeSelect}) => {
 
   const onClick = () => handleNodeSelect(node);
   const onKeyPress = e => {
-    if (e.keyCode === 13) {
+    if (e.key === 'Enter') {
       handleNodeSelect(node);
     }
   };

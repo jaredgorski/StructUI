@@ -99,6 +99,10 @@ html:not(.fui-mobile-mode).fui-pane-closed main.fui-main .fui-frame {
   width: 100%;
 }
 
+a[fui-element="fui-link"] span {
+  outline: none;
+}
+
 .fui-nodelist-toggle {
   border-bottom: none;
   border-left: 1px solid $color-gray-lt;

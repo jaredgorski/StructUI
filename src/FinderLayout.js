@@ -157,11 +157,16 @@ const FinderLayout = props => {
         .map(x => decodeURI(x));
     }
 
-    const onClick = () => {
-      setView(keyPath);
+    const onClick = () => setView(keyPath);
+    const onKeyPress = e => {
+      if (e.key === 'Enter') {
+        setView(keyPath);
+      }
     };
 
-    return React.createElement('span', {className, onClick}, children);
+    return React.createElement('a', {'fui-element': 'fui-link', className, onClick, onKeyPress, tabIndex: '0'},
+      React.createElement('span', {tabIndex: '-1'}, children),
+    );
   };
 
   const DisplayContent = () => {
