@@ -49,10 +49,18 @@ const FinderItem = ({node, handleNodeSelect}) => {
     return null;
   };
 
-  const onClick = () => handleNodeSelect(node);
+  const handleActivate = e => {
+    if (e.metaKey || e.ctrlKey) {
+      const {keyPath} = node;
+      window.open('/' + keyPath.join('/'), '_blank');
+    } else {
+      handleNodeSelect(node);
+    }
+  };
+  const onClick = handleActivate;
   const onKeyPress = e => {
     if (e.key === 'Enter') {
-      handleNodeSelect(node);
+      handleActivate(e);
     }
   };
 

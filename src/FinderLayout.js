@@ -157,10 +157,18 @@ const FinderLayout = props => {
         .map(x => decodeURI(x));
     }
 
-    const onClick = () => setView(keyPath);
+    const handleActivate = e => {
+      if (e.metaKey || e.ctrlKey) {
+        const url = href || '/' + keyPath.join('/');
+        window.open(url, '_blank');
+      } else {
+        setView(keyPath);
+      }
+    };
+    const onClick = handleActivate;
     const onKeyPress = e => {
       if (e.key === 'Enter') {
-        setView(keyPath);
+        handleActivate(e);
       }
     };
 
