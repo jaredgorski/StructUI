@@ -47,7 +47,7 @@ const FinderDisplay = ({config, activeNode, setPane, togglePane, fuiDisplayUtils
 
   const onClick = () => togglePane();
   const onKeyPress = e => {
-    if (e.keyCode === 13) {
+    if (e.key === 'Enter') {
       togglePane();
     }
   };

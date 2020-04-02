@@ -9,6 +9,7 @@ $color-gray-lt: rgb(229, 229, 234);
   display: inline-flex;
   height: 100vh;
   overflow-x: scroll;
+  position: -webkit-sticky;
   position: sticky;
   top: 0;
   z-index: 999;
@@ -98,6 +99,10 @@ html:not(.fui-mobile-mode).fui-pane-closed main.fui-main .fui-frame {
   width: 100%;
 }
 
+a[fui-element="fui-link"] span {
+  outline: none;
+}
+
 .fui-nodelist-toggle {
   border-bottom: none;
   border-left: 1px solid $color-gray-lt;
@@ -109,6 +114,7 @@ html:not(.fui-mobile-mode).fui-pane-closed main.fui-main .fui-frame {
   margin-right: -18px;
   outline: none;
   padding: 0;
+  position: -webkit-sticky;
   position: sticky;
   text-align: center;
   top: 0;

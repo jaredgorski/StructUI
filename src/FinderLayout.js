@@ -149,12 +149,24 @@ const FinderLayout = props => {
     }
   };
 
-  const FUILink = ({children, className, keypath: keyPath = []}) => {
-    const onClick = () => {
-      setView(keyPath);
+  const FUILink = ({children, className, href = '', keypath: keyPath = []}) => {
+    if (!keyPath.length && href) {
+      keyPath = href.toString()
+        .split('/')
+        .filter(x => x)
+        .map(x => decodeURI(x));
+    }
+
+    const onClick = () => setView(keyPath);
+    const onKeyPress = e => {
+      if (e.key === 'Enter') {
+        setView(keyPath);
+      }
     };
 
-    return React.createElement('span', {className, onClick}, children);
+    return React.createElement('a', {'fui-element': 'fui-link', className, onClick, onKeyPress, tabIndex: '0'},
+      React.createElement('span', {tabIndex: '-1'}, children),
+    );
   };
 
   const DisplayContent = () => {
