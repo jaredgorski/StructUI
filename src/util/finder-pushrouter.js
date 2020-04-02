@@ -12,6 +12,7 @@ function FUIRouter({callback = Function(), onPopState}) {
   }
 
   function push(state = {}, title = '', url = '') {
+    url = encodeURI(url);
     const routeState = {...state, url, as: url};
     history.pushState(routeState, title, url || window.location.pathname);
     _callbackAndTitle(title);
@@ -20,6 +21,7 @@ function FUIRouter({callback = Function(), onPopState}) {
   }
 
   function replace(state = {}, title = '', url = '') {
+    url = encodeURI(url);
     const routeState = {...state, url, as: url};
     history.replaceState(routeState, title, url || window.location.pathname);
     _callbackAndTitle(title);

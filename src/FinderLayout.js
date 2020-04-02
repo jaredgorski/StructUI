@@ -149,7 +149,14 @@ const FinderLayout = props => {
     }
   };
 
-  const FUILink = ({children, className, keypath: keyPath = []}) => {
+  const FUILink = ({children, className, href = '', keypath: keyPath = []}) => {
+    if (!keyPath.length && href) {
+      keyPath = href.toString()
+        .split('/')
+        .filter(x => x)
+        .map(x => decodeURI(x));
+    }
+
     const onClick = () => {
       setView(keyPath);
     };
