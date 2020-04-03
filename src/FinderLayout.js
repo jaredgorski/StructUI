@@ -149,7 +149,7 @@ const FinderLayout = props => {
     }
   };
 
-  const FUILink = ({children, className, href = '', keypath: keyPath = []}) => {
+  const FUILink = ({children, className, href = '', keypath: keyPath = [], target}) => {
     if (!keyPath.length && href) {
       keyPath = href.toString()
         .split('/')
@@ -161,6 +161,9 @@ const FinderLayout = props => {
       if (e.metaKey || e.ctrlKey) {
         const url = href || '/' + keyPath.join('/');
         window.open(url, '_blank');
+      } else if (target) {
+        const url = href || '/' + keyPath.join('/');
+        window.open(url, target);
       } else {
         setView(keyPath);
       }
