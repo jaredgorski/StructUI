@@ -185,13 +185,4 @@ a[fui-element="fui-link"] span {
 
 @media (max-width: 1023px) {
   @include mobileMode;
-
-  html {
-    opacity: 0;
-    transition: 0.3s;
-
-    &.fui-loaded {
-      opacity: 1;
-    }
-  }
 }

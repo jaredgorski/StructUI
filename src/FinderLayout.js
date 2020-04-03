@@ -59,26 +59,26 @@ const FinderLayout = props => {
 
   // Programmatic responsive
   useEffect(() => {
-    const handleResize = () => {
-      setMobileMode(window.innerWidth < mobileBreakpoint);
+    const handleMobileMode = ({matches}) => {
+      if (matches) {
+        document.documentElement.classList.add('fui-mobile-mode');
+      } else {
+        document.documentElement.classList.remove('fui-mobile-mode');
+        setPane(true);
+      }
+
+      setMobileMode(matches);
     };
 
-    window.addEventListener('resize', handleResize);
-    handleResize();
+    const mql = window.matchMedia(`(max-width: ${mobileBreakpoint}px)`);
 
+    handleMobileMode(mql);
     document.documentElement.classList.add('fui-loaded');
 
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
+    mql.addListener(handleMobileMode);
 
-  useEffect(() => {
-    if (mobileMode) {
-      document.documentElement.classList.add('fui-mobile-mode');
-    } else {
-      document.documentElement.classList.remove('fui-mobile-mode');
-      setPane(true);
-    }
-  }, [mobileMode]);
+    return () => mql.removeListener(handleMobileMode);
+  }, []);
 
   // Programmatic menu scroll
   const handlePaneContainerAutoScroll = () => {
