@@ -17,7 +17,7 @@ const words = [
   'axiomatic',
 ];
 
-export const finderUIConfig = {
+export const structUIConfig = {
   config: {
     defaultNodePath: ['helloRandomWord'],
   },

@@ -1,9 +1,9 @@
 const React = require('react');
-const {classNames} = require('./util/finder-classnames');
+const {classNames} = require('./util/struct-classnames');
 
-const FinderDirectory = props => {
+const StructDirectory = props => {
   const classes = classNames({
-    'fui-directory': true,
+    'struct-directory': true,
     'dir-open': props.node.open === true || false,
   });
   const elProps = {className: classes};
@@ -13,13 +13,13 @@ const FinderDirectory = props => {
   }
 
   return React.createElement('li', elProps,
-    React.createElement(FinderItem, props),
+    React.createElement(StructItem, props),
   );
 };
 
-const FinderFile = props => {
+const StructFile = props => {
   const classes = classNames({
-    'fui-file': true,
+    'struct-file': true,
     'file-open': props.node.open === true || false,
   });
   const elProps = {className: classes};
@@ -29,20 +29,20 @@ const FinderFile = props => {
   }
 
   return React.createElement('li', elProps,
-    React.createElement(FinderItem, props),
+    React.createElement(StructItem, props),
   );
 };
 
-const FinderItem = ({node, handleNodeSelect}) => {
+const StructItem = ({node, handleNodeSelect}) => {
   const itemTitle = node.title ? node.title : node.label;
   const itemIcon = () => {
     if (node.open === true) {
       if (node.icon && node.icon.open) {
-        return React.createElement('span', {className: 'fui-item-icon'}, node.icon.open);
+        return React.createElement('span', {className: 'struct-item-icon'}, node.icon.open);
       }
     } else {
       if (node.icon && node.icon.closed) {
-        return React.createElement('span', {className: 'fui-item-icon'}, node.icon.closed);
+        return React.createElement('span', {className: 'struct-item-icon'}, node.icon.closed);
       }
     }
 
@@ -72,7 +72,7 @@ const FinderItem = ({node, handleNodeSelect}) => {
         React.createElement('a', {title: itemTitle},
           React.createElement('span', {tabIndex: '-1'},
             itemIcon(),
-            React.createElement('span', {className: 'fui-item-label'}, node.label),
+            React.createElement('span', {className: 'struct-item-label'}, node.label),
           )
         )
       );
@@ -88,7 +88,7 @@ const FinderItem = ({node, handleNodeSelect}) => {
       return React.createElement('a', linkProps,
         React.createElement('span', {tabIndex: '-1'},
           itemIcon(),
-          React.createElement('span', {className: 'fui-item-label'}, node.label),
+          React.createElement('span', {className: 'struct-item-label'}, node.label),
         )
       );
     }
@@ -96,22 +96,22 @@ const FinderItem = ({node, handleNodeSelect}) => {
     return React.createElement('a', {title: itemTitle, onClick, onKeyPress, tabIndex: '0'},
       React.createElement('span', {tabIndex: '-1'},
         itemIcon(),
-        React.createElement('span', {className: 'fui-item-label'}, node.label),
+        React.createElement('span', {className: 'struct-item-label'}, node.label),
       )
     );
   }
 };
 
-const FinderTree = ({nodeState: nodes, handleNodeSelect}) => {
-  const finderItems = Object.keys(nodes).map(nodeKey => {
+const StructTree = ({nodeState: nodes, handleNodeSelect}) => {
+  const structItems = Object.keys(nodes).map(nodeKey => {
     if (nodes[nodeKey].hasOwnProperty('childNodes')) {
-      return React.createElement(FinderDirectory, {
+      return React.createElement(StructDirectory, {
         key: `fdkey-${nodes[nodeKey].label}`,
         node: nodes[nodeKey],
         handleNodeSelect,
       });
     } else {
-      return React.createElement(FinderFile, {
+      return React.createElement(StructFile, {
         key: `ffkey-${nodes[nodeKey].label}`,
         node: nodes[nodeKey],
         handleNodeSelect,
@@ -119,8 +119,8 @@ const FinderTree = ({nodeState: nodes, handleNodeSelect}) => {
     }
   });
 
-  return React.createElement('ul', {className: 'fui-nodelist'}, finderItems);
+  return React.createElement('ul', {className: 'struct-nodelist'}, structItems);
 };
 
-module.exports = FinderTree;
-module.exports.default = FinderTree;
+module.exports = StructTree;
+module.exports.default = StructTree;

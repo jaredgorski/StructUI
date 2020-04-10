@@ -4,30 +4,30 @@
 }
 
 @media (min-width: 1024px) {
-  .fui-pane-container {
+  .struct-pane-container {
       transition: 0.15s;
       width: 30vw;
   }
 }
 
-.fui-pane-container {
+.struct-pane-container {
   scroll-snap-type: x mandatory;
 }
 
-.fui-nodelist {
+.struct-nodelist {
   background-color: #F2F2F7;
   border-right: 1px solid #E5E5EA;
   scroll-snap-align: start;
 }
 
-.fui-directory,
-.fui-file {
+.struct-directory,
+.struct-file {
   height: 22px;
   position: relative;
 }
 
-.fui-directory:after,
-.fui-file:after {
+.struct-directory:after,
+.struct-file:after {
   background: linear-gradient(to right, rgba(242, 242, 247, 0), 10%, rgba(242, 242, 247, 1) 70%);
   content: '';
   height: 100%;
@@ -37,8 +37,8 @@
   width: 18px;
 }
 
-.fui-directory a:after,
-.fui-file a:after {
+.struct-directory a:after,
+.struct-file a:after {
   content: '';
   height: 100%;
   left: 0;
@@ -47,23 +47,23 @@
   width: 100%;
 }
 
-.fui-directory:hover,
-.fui-file:hover {
+.struct-directory:hover,
+.struct-file:hover {
   background: #E5E5EA;
 }
 
-.fui-directory:hover:after,
-.fui-file:hover:after {
+.struct-directory:hover:after,
+.struct-file:hover:after {
   background: linear-gradient(to right, rgba(229, 229, 234, 0), 10%, rgba(229, 229, 234, 1) 70%);
 }
 
-.fui-directory.dir-open,
-.fui-file.file-open {
+.struct-directory.dir-open,
+.struct-file.file-open {
   background: #0000E1;
   color: white;
 }
 
-.fui-directory.dir-open:after,
-.fui-file.file-open:after {
+.struct-directory.dir-open:after,
+.struct-file.file-open:after {
   background: linear-gradient(to right, rgba(0, 0, 225, 0), 10%, rgba(0, 0, 225, 1) 70%);
 }

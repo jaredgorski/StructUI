@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import FinderUI from 'finderui';
-import {finderUIConfig} from './finderui-config';
+import StructUI from 'structui';
+import {structUIConfig} from './structui-config';
 
 import '../../reset.css';
 import '../../../styles.css';
@@ -10,7 +10,7 @@ import './index.css';
 class App extends React.Component {
   render () {
     return (
-      <FinderUI {...finderUIConfig} />
+      <StructUI {...structUIConfig} />
     );
   }
 }

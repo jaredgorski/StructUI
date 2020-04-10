@@ -1,7 +1,7 @@
 const React = require('react');
 const {useEffect} = require('react');
 
-const FinderDisplay = ({config, activeNode, setPane, togglePane, fuiDisplayUtils, mobileMode}) => {
+const StructDisplay = ({config, activeNode, setPane, togglePane, structDisplayUtils, mobileMode}) => {
   const DisplayElement = () => {
     useEffect(() => {
       if (mobileMode) {
@@ -23,7 +23,7 @@ const FinderDisplay = ({config, activeNode, setPane, togglePane, fuiDisplayUtils
     }
 
     if (typeof displayComponent === 'function') {
-      return React.createElement(displayComponent, {...activeNode.display.props, fuiDisplayUtils});
+      return React.createElement(displayComponent, {...activeNode.display.props, structDisplayUtils});
     } else {
       throw new Error('Display component is not a valid React component (function or class).');
     }
@@ -52,17 +52,17 @@ const FinderDisplay = ({config, activeNode, setPane, togglePane, fuiDisplayUtils
     }
   };
 
-  return React.createElement('div', {className: 'fui-display'},
-    React.createElement('button', {className: 'fui-nodelist-toggle', title: toggleBtnTitle(), onClick, onKeyPress, tabIndex: '0'}, 
-      React.createElement('span', {className: 'fui-nodelist-toggle-content', tabIndex: '-1'}, toggleBtnIcon()),
+  return React.createElement('div', {className: 'struct-display'},
+    React.createElement('button', {className: 'struct-nodelist-toggle', title: toggleBtnTitle(), onClick, onKeyPress, tabIndex: '0'}, 
+      React.createElement('span', {className: 'struct-nodelist-toggle-content', tabIndex: '-1'}, toggleBtnIcon()),
     ),
-    React.createElement('div', {className: 'fui-display-viewport'},
-      React.createElement('div', {className: 'fui-display-document'},
+    React.createElement('div', {className: 'struct-display-viewport'},
+      React.createElement('div', {className: 'struct-display-document'},
         React.createElement(DisplayElement)
       ),
     ),
   );
 };
 
-module.exports = FinderDisplay;
-module.exports.default = FinderDisplay;
+module.exports = StructDisplay;
+module.exports.default = StructDisplay;

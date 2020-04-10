@@ -1,7 +1,7 @@
 {
-  "name": "finderui",
-  "version": "0.14.1",
-  "description": "Simple, dynamic, filesystem-inspired site explorer.",
+  "name": "structui",
+  "version": "0.1.0",
+  "description": "Minimal, light, data-built site explorer",
   "main": "dist/index.js",
   "directories": {
     "src": "./src"
@@ -15,14 +15,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jaredgorski/FinderUI.git"
+    "url": "git+https://github.com/jaredgorski/StructUI.git"
   },
   "author": "Jared Gorski",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/jaredgorski/FinderUI/issues"
+    "url": "https://github.com/jaredgorski/StructUI/issues"
   },
-  "homepage": "https://github.com/jaredgorski/FinderUI#readme",
+  "homepage": "https://github.com/jaredgorski/StructUI#readme",
   "devDependencies": {
     "react": "^16.10.2",
     "sass": "^1.23.0",

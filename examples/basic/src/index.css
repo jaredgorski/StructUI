@@ -3,11 +3,11 @@
   font-family: -apple-system,BlinkMacSystemFont,'avenir next',avenir,helvetica,'helvetica neue',ubuntu,roboto,noto,'segoe ui',arial,sans-serif;
 }
 
-.fui-item-label {
+.struct-item-label {
   display: inline-block;
   text-overflow: ellipsis;
 }
 
-.fui-directory {
+.struct-directory {
   font-weight: 500;
 }

@@ -1,10 +1,10 @@
 const React = require('react');
-const FinderLayout = require('./FinderLayout');
-const {getProcessedProps} = require('./util/finder-process');
+const StructLayout = require('./StructLayout');
+const {getProcessedProps} = require('./util/struct-process');
 
-const FinderApp = props => {
-  return React.createElement(FinderLayout, getProcessedProps(props));
+const StructApp = props => {
+  return React.createElement(StructLayout, getProcessedProps(props));
 };
 
-module.exports = FinderApp;
-module.exports.default = FinderApp;
+module.exports = StructApp;
+module.exports.default = StructApp;

@@ -1,12 +1,13 @@
 $color-gray-lt: rgb(229, 229, 234);
 
-.fui-frame {
+.struct-frame {
   display: flex;
 }
 
-.fui-pane-container {
-  background-color: white;
+.struct-pane-container {
+  background: white;
   display: inline-flex;
+  flex: 1 0 auto;
   height: 100vh;
   overflow-x: scroll;
   position: -webkit-sticky;
@@ -15,13 +16,13 @@ $color-gray-lt: rgb(229, 229, 234);
   z-index: 999;
 }
 
-.fui-pane {
+.struct-pane {
   display: inline-flex;
   flex: auto;
   height: 100%;
 }
 
-.fui-nodelist {
+.struct-nodelist {
   list-style: none;
   margin: 0;
   min-width: 120px;
@@ -29,34 +30,34 @@ $color-gray-lt: rgb(229, 229, 234);
   overflow-y: scroll;
   padding: 0;
   -webkit-overflow-scrolling: touch;
-  width: 100%;
+  width: min-content;
 }
 
-html:not(.fui-mobile-mode).fui-pane-closed main.fui-main .fui-frame {
-  .fui-pane-container {
-    width: 0;
+html:not(.struct-mobile-mode).struct-pane-closed main.struct-main .struct-frame {
+  .struct-pane-container {
+    max-width: 0;
   }
 
-  .fui-nodelist {
+  .struct-nodelist {
     min-width: 0;
   }
 }
 
-.fui-directory,
-.fui-file {
+.struct-directory,
+.struct-file {
   margin: 0;
 }
 
-.fui-directory a,
-.fui-file a {
+.struct-directory a,
+.struct-file a {
   align-items: center;
   display: flex;
   height: 100%;
   width: 100%;
 }
 
-.fui-directory a>span,
-.fui-file a>span {
+.struct-directory a>span,
+.struct-file a>span {
   align-items: center;
   box-sizing: border-box;
   display: flex;
@@ -66,26 +67,26 @@ html:not(.fui-mobile-mode).fui-pane-closed main.fui-main .fui-frame {
   width: 100%;
 }
 
-.fui-directory>a:focus,
-.fui-file>a:focus,
-.fui-directory>a>span:focus,
-.fui-file>a>span:focus {
+.struct-directory>a:focus,
+.struct-file>a:focus,
+.struct-directory>a>span:focus,
+.struct-file>a>span:focus {
   outline: none;
 }
 
-.fui-directory>a:focus>span,
-.fui-file>a:focus>span {
+.struct-directory>a:focus>span,
+.struct-file>a:focus>span {
   border: 1px dotted black;
 }
 
-.fui-item-icon {
+.struct-item-icon {
   align-items: center;
   display: inline-flex;
   justify-content: center;
   margin: 0 6px 0 0;
 }
 
-.fui-item-label {
+.struct-item-label {
   cursor: pointer;
   display: inline-flex;
   margin: 0;
@@ -93,24 +94,22 @@ html:not(.fui-mobile-mode).fui-pane-closed main.fui-main .fui-frame {
   white-space: nowrap;
 }
 
-.fui-display {
-  background-color: white;
+.struct-display {
   display: inline-flex;
   width: 100%;
 }
 
-a[fui-element="fui-link"] span {
+a[struct-element="struct-link"] span {
   outline: none;
 }
 
-.fui-nodelist-toggle {
+.struct-nodelist-toggle {
   border-bottom: none;
   border-left: 1px solid $color-gray-lt;
   border-right: 1px solid $color-gray-lt;
   border-top: none;
   cursor: pointer;
   height: 100vh;
-  left: 0;
   margin-right: -18px;
   outline: none;
   padding: 0;
@@ -122,7 +121,7 @@ a[fui-element="fui-link"] span {
   z-index: 99;
 }
 
-.fui-nodelist-toggle-content {
+.struct-nodelist-toggle-content {
   align-items: center;
   display: inline-flex;
   height: 100%;
@@ -132,24 +131,24 @@ a[fui-element="fui-link"] span {
   width: 100%;
 }
 
-.fui-nodelist-toggle:focus .fui-nodelist-toggle-content {
+.struct-nodelist-toggle:focus .struct-nodelist-toggle-content {
   border: 1px dotted black;
 }
 
-.fui-display-viewport {
+.struct-display-viewport {
   box-sizing: border-box;
   display: inline-flex;
   padding-left: 18px;
   width: 100%;
 }
 
-.fui-display-document {
+.struct-display-document {
   display: block;
   width: 100%;
 }
 
 @mixin mobileMode {
-  .fui-pane-container {
+  .struct-pane-container {
     left: 0;
     max-width: none;
     position: fixed;
@@ -157,26 +156,30 @@ a[fui-element="fui-link"] span {
     width: 100vw;
   }
 
-  .fui-nodelist {
+  .struct-nodelist {
     scroll-snap-align: start;
     scroll-snap-stop: always;
     width: 100vw;
   }
 
-  .fui-display-viewport {
+  .struct-pane-container {
+    transition: none;
+  }
+
+  .struct-display-viewport {
     width: 100vw;
   }
 }
 
-.fui-mobile-mode {
+.struct-mobile-mode {
   @include mobileMode;
 
-  &:not(.fui-pane-closed) {
+  &:not(.struct-pane-closed) {
     overflow: hidden;
   }
 
-  &.fui-pane-closed {
-    .fui-pane-container {
+  &.struct-pane-closed {
+    .struct-pane-container {
       opacity: 0;
       z-index: -999;
     }

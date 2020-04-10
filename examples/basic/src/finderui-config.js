@@ -1,7 +1,7 @@
 import HelloName from './components/HelloName';
 import HelloWorld from './components/HelloWorld';
 
-export const finderUIConfig = {
+export const structUIConfig = {
   nodes: {
     myDirectory: {
       icon: {

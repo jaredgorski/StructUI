@@ -23,7 +23,7 @@ const helloRandomNumber = () => {
   };
 }
 
-export const finderUIConfig = {
+export const structUIConfig = {
   config: {
     pushRouter: {
       enable: true,

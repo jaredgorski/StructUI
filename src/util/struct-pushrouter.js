@@ -1,4 +1,4 @@
-function FUIRouter({callback = Function(), onPopState}) {
+function StructRouter({callback = Function(), onPopState}) {
   function _callback(arg) {
     callback(arg);
   }
@@ -74,4 +74,4 @@ function handleRouting(router, state, activeNode) {
   }
 }
 
-module.exports = {FUIRouter, detachRouter, initializeRouter, handleRouting};
+module.exports = {StructRouter, detachRouter, initializeRouter, handleRouting};

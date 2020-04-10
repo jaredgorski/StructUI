@@ -1,4 +1,4 @@
-const {getNodeAtPath, updateNodePathWithSelection} = require('./finder-select');
+const {getNodeAtPath, updateNodePathWithSelection} = require('./struct-select');
 
 function addNodeIdsAndPaths(nodes, currentPath = []) {
   Object.keys(nodes).forEach(key => {

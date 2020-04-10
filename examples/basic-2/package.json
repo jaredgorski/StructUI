@@ -1,7 +1,7 @@
 {
-  "name": "finderui-example-basic-2",
+  "name": "structui-example-basic-2",
   "version": "1.0.0",
-  "description": "Basic, styled FinderUI example.",
+  "description": "Basic, styled StructUI example.",
   "scripts": {
     "dev": "./dev.sh",
     "start": "webpack-dev-server --devtool eval"
@@ -9,7 +9,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "finderui": "^0.14.1",
+    "structui": "^0.14.1",
     "react": "^16.12.0",
     "react-dom": "^16.12.0"
   },
