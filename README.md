@@ -1,7 +1,6 @@
-# StructUI ![npm bundle size](https://img.shields.io/bundlephobia/min/structui.svg) <img align="left" height="80" src="https://raw.githubusercontent.com/jaredgorski/StructUI/master/.media/structui_80.png">
-Simple, dynamic, data-built site explorer.
+# StructUI ![npm bundle size](https://img.shields.io/bundlephobia/min/structui.svg)
 
-![](https://raw.githubusercontent.com/jaredgorski/StructUI/master/.media/structui_screenshot.png)
+_NOTE:_ This repository is not actively maintained, largely because React Router is far superior and there's very little need for a component like this. However, below is the documentation in case you feel a desire to use this package. It's should be available as long as npm is up and running.
 
 ## Install
 ```
@@ -187,6 +186,6 @@ function SubFile() {
 ## Try it out
 **To see a full implentation of StructUI in action, check out [https://jaredgorski.org](https://jaredgorski.org)**
 
-Try out a [**basic example**](https://github.com/jaredgorski/StructUI/tree/master/examples/basic) to get started. More examples exploring StructUI usage will be coming soon! Here's a gif of what the [basic example](https://github.com/jaredgorski/StructUI/tree/master/examples/basic) can do:
+Here's a gif of what a basic example can do:
 
 ![](https://raw.githubusercontent.com/jaredgorski/StructUI/master/examples/basic/.media/basic-demo.gif)
